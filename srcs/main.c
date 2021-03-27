@@ -10,74 +10,144 @@ t_stack *allocation(t_stack *stack_a, int nbr)
     new->number = nbr;
     new->next = NULL;
     new->previous = NULL;
-    new->last = NULL;
     if (stack_a == NULL)
-    {
         return (new);
-    }
     tmp = stack_a;
     while (tmp->next)
         tmp = tmp->next;
     new->previous = tmp;
     tmp->next = new;
-    stack_a->first = stack_a;
-    stack_a->last = new;
     return (stack_a);
 }
 
-void swap(t_stack **stack_a)
+void swap(t_stack **stack)
 {
     t_stack *tmp;
-    // t_stack *tmp_next;
-    // t_stack *tmp_next_next;
-    // t_stack *tmp_next;
+    t_stack *test;
 
-    tmp = (*stack_a)->next;
-    // tmp_next = (*stack_a)->next;
-    // tmp_next_next = (*stack_a)->next;
+    tmp = (*stack);
+    (*stack) = (*stack)->next;
+    tmp->next = (*stack)->next;
+    tmp->next->previous = tmp;
+    (*stack)->previous = NULL;
+    (*stack)->next = tmp;
+    test = *stack;
+}
 
-    // (*stack_a)->next->previous = NULL;
-    (*stack_a)->next = (*stack_a)->next->next;
-    (*stack_a)->next->previous = *stack_a;
-    tmp->next = *stack_a;
+void reverse(t_stack **stack)
+{
+    t_stack *tmp;
+    t_stack *last;
+
+    tmp = (*stack);
+    *stack = (*stack)->next;
+    (*stack)->previous = NULL;
+    last = *stack;
+    while (last->next)
+        last = last->next;
+    tmp->next = NULL;
+    tmp->previous = last;
+    last->next = tmp;
+}
+
+t_stack *create_node(int number)
+{
+    t_stack *new;
+
+    if (!(new = (t_stack *)malloc(sizeof(t_stack))))
+        return (NULL);
+    new->next = NULL;
+    new->number = number;
+    new->previous = NULL;
+    return (new);
+}
+void push(t_stack **first, t_stack **second)
+{
+    t_stack *new;
+    t_stack *tmp;
+
+    if (*second == NULL)
+    {
+        ft_putendl_fd("Second Tab is empty",1);
+        exit(1);
+    }
+    new = create_node((*second)->number);
+    if (*first)
+    {
+        new->next = *first;
+        (*first)->previous = new;
+    }
+    *first = new;
+    if ((*second)->next)
+        tmp = (*second)->next;
+    printf("{second ==> %d}\n", (*second)->number);
+    free(*second);
+    *second = NULL;
+    if (tmp)
+        *second = tmp;
+}
+void reverse_reverse(t_stack **stack)
+{
+    t_stack *tmp;
+
+    tmp = *stack;
+    while (tmp->next)
+        tmp = tmp->next;
+    (*stack)->previous = tmp;
+    tmp->next = *stack;
+    tmp->previous->next = NULL;
     tmp->previous = NULL;
-    (*stack_a) = tmp;
-    (*stack_a)->first = *stack_a;
+    *stack = tmp;
 }
 int main(int ac, char **av)
 {
-    t_stack *stack_a;
-    t_stack *tmp;
+    t_stack *a;
+    t_stack *b;
+    t_stack *tmp_a;
+    t_stack *tmp_b;
+    t_stack *save;
     int count;
     int index;
 
-    stack_a = NULL;
+    a = NULL;
     count = 2;
     index = 1;
     if (ac > 2)
     {
         while (count <= ac)
         {
-            stack_a = allocation(stack_a, ft_atoi(av[index++]));
+            a = allocation(a, ft_atoi(av[index++]));
             count++;
         }
     }
     else
         printf("Hi shi haja mahiya!\n");
     printf("========== before swaap ==========\n");
-    tmp = stack_a;
-    while (tmp)
+    tmp_a = a;
+    while (tmp_a)
     {
-        printf("%d\n", tmp->number);
-        tmp = tmp->next;
+        printf("%d\n", tmp_a->number);
+        tmp_a = tmp_a->next;
     }
-    swap(&stack_a);
-    printf("========== after swaap ==========\n");
-    tmp = stack_a;
-    while (tmp)
+    push(&b, &a);
+    push(&b, &a);
+    push(&b, &a);
+    push(&b, &a);
+    tmp_b = b;
+    printf("=======> push b <=======\n");
+    while (tmp_b)
     {
-        printf("%d\n", tmp->number);
-        tmp = tmp->next;
+        printf("%d\n", tmp_b->number);
+        tmp_b = tmp_b->next;
     }
+
+    tmp_a = a;
+    printf("=======> a <=======\n");
+    while (tmp_a)
+    {
+        printf("%d\n", tmp_a->number);
+        tmp_a = tmp_a->next;
+    }
+
     return (0);
 }
