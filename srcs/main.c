@@ -16,19 +16,10 @@ void print(t_stack *a, t_stack *b)
             printf("|                         |            %d            |\n", tmp_b->number);
         else if (tmp_a && !tmp_b)
             printf("|            %d            |                         |\n", tmp_a->number);
-        // printf("salam\n");
         if (tmp_a)
-        {
-            // ft_putendl_fd("a", 1);
-            // getchar();
             tmp_a = tmp_a->next;
-        }
         if (tmp_b)
-        {
-            // ft_putendl_fd("b", 1);
-            // getchar();
             tmp_b = tmp_b->next;
-        }
     }
 }
 int main(int ac, char **av)
@@ -39,7 +30,6 @@ int main(int ac, char **av)
     int index;
     char *buffer;
 
-    buffer = (char *)malloc(10);
     a = NULL;
     b = NULL;
     count = 2;
@@ -59,6 +49,7 @@ int main(int ac, char **av)
     }
     while (1)
     {
+        buffer = (char *)malloc(10);
         read(0, buffer, 10);
         if (!(ft_strncmp(buffer, "sa\n", 3)))
             swap(&a);
@@ -82,7 +73,22 @@ int main(int ac, char **av)
             reverse_reverse(&b);
         if (!(ft_strncmp(buffer, "rrr\n", 4)))
             rreverse_reverse(a, b);
+        if ((!(ft_strncmp(buffer, "\0", 1))))
+            break;
         print(a, b);
+        free(buffer);
+        buffer = NULL;
     }
+    while (a->next)
+    {
+        if (a->number > a->next->number || b)
+        {
+            ft_putendl_fd("KO", 1);
+            exit(1);
+        }
+        a = a->next;
+    }
+    ft_putendl_fd("OK", 1);
+
     return (0);
 }
