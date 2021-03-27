@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-static int		words(char *str, char c)
+static int words(char *str, char c)
 {
-	int			i;
-	int			j;
+	int i;
+	int j;
 
 	i = 0;
 	j = 0;
@@ -34,7 +34,7 @@ static int		words(char *str, char c)
 	return (j);
 }
 
-static void		*leak(char **spl, int j)
+static void *leak(char **spl, int j)
 {
 	j = j - 1;
 	while (spl[j])
@@ -46,9 +46,9 @@ static void		*leak(char **spl, int j)
 	return (NULL);
 }
 
-static int		carcts(char *str, char c)
+static int carcts(char *str, char c)
 {
-	int			i;
+	int i;
 
 	i = 0;
 	while (str[i] && str[i] != c)
@@ -58,11 +58,11 @@ static int		carcts(char *str, char c)
 	return (i);
 }
 
-static char		*alloc(char **tab, char *src, char c)
+static char *alloc(char **tab, char *src, char c)
 {
-	int			i;
-	int			j;
-	int			o;
+	int i;
+	int j;
+	int o;
 
 	j = 0;
 	o = 0;
@@ -84,16 +84,12 @@ static char		*alloc(char **tab, char *src, char c)
 	return (*tab);
 }
 
-char			**ft_split(char const *s, char c)
+char **ft_split(char const *s, char c)
 {
-	int			i;
-	int			j;
-	int			o;
-	char		**tab;
-	char		*str;
+	int j;
+	char **tab;
+	char *str;
 
-	o = 0;
-	i = 0;
 	j = 0;
 	if (!s)
 		return (NULL);

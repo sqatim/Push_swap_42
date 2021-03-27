@@ -6,6 +6,8 @@ LIB_PATH= libft
 
 
 SRC_NAME=main.c\
+		allocation.c\
+		operation.c\
 		
 
 HDR_NAME=push_swap.h 

@@ -1,115 +1,47 @@
 #include "push_swap.h"
 
-t_stack *allocation(t_stack *stack_a, int nbr)
+void print(t_stack *a, t_stack *b)
 {
-    t_stack *tmp;
-    t_stack *new;
+    t_stack *tmp_a = a;
+    t_stack *tmp_b = b;
 
-    if (!(new = (t_stack *)malloc(sizeof(t_stack))))
-        return (NULL);
-    new->number = nbr;
-    new->next = NULL;
-    new->previous = NULL;
-    if (stack_a == NULL)
-        return (new);
-    tmp = stack_a;
-    while (tmp->next)
-        tmp = tmp->next;
-    new->previous = tmp;
-    tmp->next = new;
-    return (stack_a);
-}
+    printf("|            a            |            b            |\n");
+    printf("|---------------------------------------------------|\n");
 
-void swap(t_stack **stack)
-{
-    t_stack *tmp;
-    t_stack *test;
-
-    tmp = (*stack);
-    (*stack) = (*stack)->next;
-    tmp->next = (*stack)->next;
-    tmp->next->previous = tmp;
-    (*stack)->previous = NULL;
-    (*stack)->next = tmp;
-    test = *stack;
-}
-
-void reverse(t_stack **stack)
-{
-    t_stack *tmp;
-    t_stack *last;
-
-    tmp = (*stack);
-    *stack = (*stack)->next;
-    (*stack)->previous = NULL;
-    last = *stack;
-    while (last->next)
-        last = last->next;
-    tmp->next = NULL;
-    tmp->previous = last;
-    last->next = tmp;
-}
-
-t_stack *create_node(int number)
-{
-    t_stack *new;
-
-    if (!(new = (t_stack *)malloc(sizeof(t_stack))))
-        return (NULL);
-    new->next = NULL;
-    new->number = number;
-    new->previous = NULL;
-    return (new);
-}
-void push(t_stack **first, t_stack **second)
-{
-    t_stack *new;
-    t_stack *tmp;
-
-    if (*second == NULL)
+    while (tmp_a || tmp_b)
     {
-        ft_putendl_fd("Second Tab is empty",1);
-        exit(1);
+        if (tmp_a && tmp_b)
+            printf("|            %d            |            %d            |\n", tmp_a->number, tmp_b->number);
+        else if (!tmp_a && tmp_b)
+            printf("|                         |            %d            |\n", tmp_b->number);
+        else if (tmp_a && !tmp_b)
+            printf("|            %d            |                         |\n", tmp_a->number);
+        // printf("salam\n");
+        if (tmp_a)
+        {
+            // ft_putendl_fd("a", 1);
+            // getchar();
+            tmp_a = tmp_a->next;
+        }
+        if (tmp_b)
+        {
+            // ft_putendl_fd("b", 1);
+            // getchar();
+            tmp_b = tmp_b->next;
+        }
     }
-    new = create_node((*second)->number);
-    if (*first)
-    {
-        new->next = *first;
-        (*first)->previous = new;
-    }
-    *first = new;
-    if ((*second)->next)
-        tmp = (*second)->next;
-    printf("{second ==> %d}\n", (*second)->number);
-    free(*second);
-    *second = NULL;
-    if (tmp)
-        *second = tmp;
-}
-void reverse_reverse(t_stack **stack)
-{
-    t_stack *tmp;
-
-    tmp = *stack;
-    while (tmp->next)
-        tmp = tmp->next;
-    (*stack)->previous = tmp;
-    tmp->next = *stack;
-    tmp->previous->next = NULL;
-    tmp->previous = NULL;
-    *stack = tmp;
 }
 int main(int ac, char **av)
 {
     t_stack *a;
     t_stack *b;
-    t_stack *tmp_a;
-    t_stack *tmp_b;
-    t_stack *save;
     int count;
     int index;
+    char *buffer;
 
+    buffer = (char *)malloc(10);
     a = NULL;
+    b = NULL;
     count = 2;
     index = 1;
     if (ac > 2)
@@ -121,33 +53,36 @@ int main(int ac, char **av)
         }
     }
     else
+    {
         printf("Hi shi haja mahiya!\n");
-    printf("========== before swaap ==========\n");
-    tmp_a = a;
-    while (tmp_a)
-    {
-        printf("%d\n", tmp_a->number);
-        tmp_a = tmp_a->next;
+        exit(1);
     }
-    push(&b, &a);
-    push(&b, &a);
-    push(&b, &a);
-    push(&b, &a);
-    tmp_b = b;
-    printf("=======> push b <=======\n");
-    while (tmp_b)
+    while (1)
     {
-        printf("%d\n", tmp_b->number);
-        tmp_b = tmp_b->next;
+        read(0, buffer, 10);
+        if (!(ft_strncmp(buffer, "sa\n", 3)))
+            swap(&a);
+        if (!(ft_strncmp(buffer, "sb\n", 3)))
+            swap(&b);
+        if (!(ft_strncmp(buffer, "ss\n", 3)))
+            sswap(a, b);
+        if (!(ft_strncmp(buffer, "pa\n", 3)))
+            push(&a, &b);
+        if (!(ft_strncmp(buffer, "pb\n", 3)))
+            push(&b, &a);
+        if (!(ft_strncmp(buffer, "ra\n", 3)))
+            reverse(&a);
+        if (!(ft_strncmp(buffer, "rb\n", 3)))
+            reverse(&b);
+        if (!(ft_strncmp(buffer, "rr\n", 3)))
+            rreverse(a, b);
+        if (!(ft_strncmp(buffer, "rra\n", 4)))
+            reverse_reverse(&a);
+        if (!(ft_strncmp(buffer, "rrb\n", 4)))
+            reverse_reverse(&b);
+        if (!(ft_strncmp(buffer, "rrr\n", 4)))
+            rreverse_reverse(a, b);
+        print(a, b);
     }
-
-    tmp_a = a;
-    printf("=======> a <=======\n");
-    while (tmp_a)
-    {
-        printf("%d\n", tmp_a->number);
-        tmp_a = tmp_a->next;
-    }
-
     return (0);
 }
