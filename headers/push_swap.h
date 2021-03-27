@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/03/26 18:12:16 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/03/27 13:03:14 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "../libft/libft.h"
 
-typedef struct s_stacka
+typedef struct s_stack
 {
-    int integer;
-    struct s_stacka *next;
-    struct s_stacka *previous;
-} t_stacka;
+    int number;
+    struct s_stack *next;
+    struct s_stack *previous;
+    struct s_stack *first;
+    struct s_stack *last;
+} t_stack;
 
-typedef struct s_stackb
-{
-    int integer;
-    struct s_stackb *next;
-    struct s_stackb *previous;
-} t_stackb;
 #endif
