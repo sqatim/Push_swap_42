@@ -6,7 +6,7 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 20:34:44 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/28 12:57:29 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/03/28 14:22:35 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,22 @@ void swap(t_stack **stack)
     t_stack *tmp;
     t_stack *test;
 
-    tmp = (*stack);
-    (*stack) = (*stack)->next;
-    tmp->next = (*stack)->next;
-    if (tmp->next && tmp->next->previous)
-        tmp->next->previous = tmp;
-    (*stack)->previous = NULL;
-    (*stack)->next = tmp;
-    test = *stack;
+    if (*stack)
+    {
+        if ((*stack)->next)
+        {
+            tmp = (*stack);
+            (*stack) = (*stack)->next;
+            tmp->next = (*stack)->next;
+            if (tmp->next && tmp->next->previous)
+                tmp->next->previous = tmp;
+            (*stack)->previous = NULL;
+            (*stack)->next = tmp;
+            test = *stack;
+        }
+        else
+            ft_putendl_fd("you need at least 2 number in the stack", 1);
+    }
 }
 
 void sswap(t_stack **a, t_stack **b)
@@ -38,20 +46,23 @@ void reverse(t_stack **stack)
     t_stack *last;
 
     if (!(*stack))
-    {
         ft_putendl_fd("stack is empty", 1);
-    }
     else
     {
-        tmp = (*stack);
-        *stack = (*stack)->next;
-        (*stack)->previous = NULL;
-        last = *stack;
-        while (last->next)
-            last = last->next;
-        tmp->next = NULL;
-        tmp->previous = last;
-        last->next = tmp;
+        if ((*stack)->next)
+        {
+            tmp = (*stack);
+            *stack = (*stack)->next;
+            (*stack)->previous = NULL;
+            last = *stack;
+            while (last->next)
+                last = last->next;
+            tmp->next = NULL;
+            tmp->previous = last;
+            last->next = tmp;
+        }
+        else
+            ft_putendl_fd("you need at least 2 number in the stack", 1);
     }
 }
 
