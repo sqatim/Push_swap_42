@@ -6,11 +6,11 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 20:34:44 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/27 20:41:38 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/03/28 12:57:29 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 void swap(t_stack **stack)
 {
@@ -20,37 +20,45 @@ void swap(t_stack **stack)
     tmp = (*stack);
     (*stack) = (*stack)->next;
     tmp->next = (*stack)->next;
-    tmp->next->previous = tmp;
+    if (tmp->next && tmp->next->previous)
+        tmp->next->previous = tmp;
     (*stack)->previous = NULL;
     (*stack)->next = tmp;
     test = *stack;
 }
 
-void sswap(t_stack *a, t_stack *b)
+void sswap(t_stack **a, t_stack **b)
 {
-    swap(&a);
-    swap(&b);
+    swap(&(*a));
+    swap(&(*b));
 }
 void reverse(t_stack **stack)
 {
     t_stack *tmp;
     t_stack *last;
 
-    tmp = (*stack);
-    *stack = (*stack)->next;
-    (*stack)->previous = NULL;
-    last = *stack;
-    while (last->next)
-        last = last->next;
-    tmp->next = NULL;
-    tmp->previous = last;
-    last->next = tmp;
+    if (!(*stack))
+    {
+        ft_putendl_fd("stack is empty", 1);
+    }
+    else
+    {
+        tmp = (*stack);
+        *stack = (*stack)->next;
+        (*stack)->previous = NULL;
+        last = *stack;
+        while (last->next)
+            last = last->next;
+        tmp->next = NULL;
+        tmp->previous = last;
+        last->next = tmp;
+    }
 }
 
-void rreverse(t_stack *a, t_stack *b)
+void rreverse(t_stack **a, t_stack **b)
 {
-    reverse(&a);
-    reverse(&b);
+    reverse(&(*a));
+    reverse(&(*b));
 }
 
 void push(t_stack **first, t_stack **second)
@@ -60,23 +68,23 @@ void push(t_stack **first, t_stack **second)
     tmp = NULL;
 
     if (*second == NULL)
-    {
         ft_putendl_fd("Second Tab is empty", 1);
-        exit(1);
-    }
-    new = create_node((*second)->number);
-    if (*first)
+    else
     {
-        new->next = *first;
-        (*first)->previous = new;
+        new = create_node((*second)->number);
+        if (*first)
+        {
+            new->next = *first;
+            (*first)->previous = new;
+        }
+        *first = new;
+        if ((*second)->next)
+            tmp = (*second)->next;
+        free(*second);
+        *second = NULL;
+        if (tmp)
+            *second = tmp;
     }
-    *first = new;
-    if ((*second)->next)
-        tmp = (*second)->next;
-    free(*second);
-    *second = NULL;
-    if (tmp)
-        *second = tmp;
 }
 
 void reverse_reverse(t_stack **stack)
@@ -93,8 +101,8 @@ void reverse_reverse(t_stack **stack)
     *stack = tmp;
 }
 
-void rreverse_reverse(t_stack *a, t_stack *b)
+void rreverse_reverse(t_stack **a, t_stack **b)
 {
-    reverse_reverse(&a);
-    reverse_reverse(&b);
+    reverse_reverse(&(*a));
+    reverse_reverse(&(*b));
 }

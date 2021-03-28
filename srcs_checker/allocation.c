@@ -6,11 +6,11 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 20:35:50 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/27 20:36:39 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/03/28 12:57:29 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 t_stack *create_node(int number)
 {
