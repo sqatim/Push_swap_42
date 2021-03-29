@@ -17,6 +17,12 @@ SRC_CHECKER_NAME=checker.c\
 			free.c\
 
 SRC_PUSH_SWAP_NAME=push_swap.c\
+			allocation.c\
+			operation.c\
+			check_affectation.c\
+			free.c\
+			print.c\
+
 		
 
 		

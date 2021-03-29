@@ -13,9 +13,6 @@ int main(int ac, char **av)
     tmp = a;
     while (a->next)
     {
-        getchar();
-        printf("|current ==> {%d}|\t|next ==> {%d}|\n", a->number, a->next->number);
-        getchar();
         if (a->number > a->next->number || b)
         {
             if (b)

@@ -6,11 +6,11 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/29 15:03:58 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/03/29 15:34:37 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 int check_if_int(char *str)
 {

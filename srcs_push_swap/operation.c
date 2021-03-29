@@ -6,11 +6,11 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 20:34:44 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/29 16:25:13 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/03/29 17:54:14 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 void swap(t_stack **stack)
 {
@@ -78,6 +78,8 @@ void push(t_stack **first, t_stack **second)
     t_stack *tmp;
     tmp = NULL;
 
+    // ft_putendl_fd("i am here",1);
+    // printf("number -> %d\n",(*second)->number);
     if (*second == NULL)
         ft_putendl_fd("Second Tab is empty", 1);
     else
