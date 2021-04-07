@@ -23,6 +23,7 @@ SRC_PUSH_SWAP_NAME=push_swap.c\
 			free.c\
 			print.c\
 			logic2.c\
+			tools.c\
 
 		
 

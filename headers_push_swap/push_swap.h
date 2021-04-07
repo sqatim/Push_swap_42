@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/07 12:31:19 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/07 18:31:39 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@
 #include <stdio.h>
 #include <limits.h>
 #include "../libft/libft.h"
+
+typedef enum e_operation
+{
+    SWAP_A,
+    SWAP_B,
+    SSWAP,
+    REVERSE_A,
+    REVERSE_B,
+    RREVERSE,
+    REVERSE_REVERSE_A,
+    REVERSE_REVERSE_B,
+    RREVERSE_REVERSE,
+    PUSH_A,
+    PUSH_B
+}           t_operation;
 
 typedef struct s_save
 {
@@ -42,6 +57,17 @@ typedef struct s_tmp
     t_stack *b;
 }               t_tmp;
 
+typedef struct s_tools
+{
+    int med_a;
+    int med_b;
+    int diff_a;
+    int diff_b;
+    int len_a;
+    int len_b;
+}               t_tools;
+
+
 /*================================  operation  ================================*/
 
 void swap(t_stack **stack);
@@ -51,6 +77,11 @@ void reverse_reverse(t_stack **stack);
 void rreverse_reverse(t_stack **a, t_stack **b);
 void rreverse(t_stack **a, t_stack **b);
 void sswap(t_stack **a, t_stack **b);
+
+/*================================  steps  ================================*/
+
+void step_one(t_stack **a, t_stack **b);
+void step_two(t_stack **a, t_stack **b);
 
 /*================================  allocation  ================================*/
 
@@ -74,6 +105,11 @@ int search_for_pivot(t_stack *a, int *calcul);
 /*================================  search  ================================*/
 
 int calcul_for_reverse(t_stack *a);
+
+/*================================  search  ================================*/
+
+int count_to_number(t_stack *stack, int number);
+int count_len_stack(t_stack *stack);
 
 /*================================  free  ================================*/
 

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/07 12:38:21 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/07 18:47:37 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,32 @@ t_tmp init_tmp(t_stack *a, t_stack *b)
     return (tmp);
 }
 
-// je go n9assi o nji nkamal hna 
+// je go n9assi o nji nkamal hna
 int search_for_min(t_save save, t_stack *stack)
 {
-    while(stack)
+    int min;
+
+    min = save.min_b;
+    while (stack)
     {
-        if(stack->number > save.min_a)
-            puts("here");
+        if (stack->number <= min && stack->number >= save.min_b && stack->number <= save.max_b)
+            min = stack->number;
         stack = stack->next;
     }
+    return (min);
 }
-int search_for_max(int save, t_stack *stack)
+int search_for_max(t_save save, t_stack *stack)
 {
-    while(stack)
+    int max;
+
+    max = save.min_a;
+    while (stack)
     {
-        
+        if (stack->number >= max && stack->number >= save.min_a && stack->number <= save.max_a)
+            max = stack->number;
+        stack = stack->next;
     }
+    return (max);
 }
 
 t_save search_for_minmax(t_stack *a, t_stack *b)
@@ -112,13 +122,31 @@ void step_two(t_stack **a, t_stack **b)
 {
     t_save save;
     t_tmp tmp;
+    int min;
+    int max;
+    t_tools tool;
 
-    tmp = init_tmp(*a, *b);    
+    tmp = init_tmp(*a, *b);
     save = search_for_minmax(tmp.a, tmp.b);
-    tmp = init_tmp(*a, *b);    
-    while (tmp.a || tmp.b)
-    {
-
-    }
+    tmp = init_tmp(*a, *b);
+    min = search_for_min(save, tmp.b);
+    max = search_for_max(save, tmp.a);
+    tmp = init_tmp(*a, *b);
+    tmp = init_tmp(*a, *b);
+    tool.len_a = count_len_stack(tmp.a);
+    tool.len_b = count_len_stack(tmp.b);
+    tool.med_a = tool.len_a/2;
+    tool.med_b = tool.len_b/2;
+    if(tool.len_a % 2 != 0)
+        tool.med_a++;
+    if(tool.len_b % 2 != 0)
+        tool.med_b++;
+    tmp = init_tmp(*a, *b);
+    tool.diff_a = count_to_number(tmp.a, 1) - tool.med_a; 
+    tool.diff_b = count_to_number(tmp.b, 7) - tool.med_b; 
+    // while (tmp.a || tmp.b)
+    // {
+        
+    // }
 }
 /* ============================ tani test ============================ */
