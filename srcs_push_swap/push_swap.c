@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/30 18:15:44 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:31:21 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,76 +55,9 @@ int calcul_for_reverse(t_stack *a)
     return (counter);
 }
 
-void step_one(t_stack **a, t_stack **b)
-{
-    t_stack *tmp;
-    int if_true;
-    int pivot;
-    int index;
-    int calcul;
 
-    index = 0;
-    if_true = 1;
-    tmp = *a;
-    pivot = search_for_pivot(*a, &calcul);
-    *a = tmp;
-    while (tmp && index < calcul)
-    {
-        if (tmp->number > pivot)
-        {
-            index = 0;
-            if_true = 1;
-            push(&(*b), &tmp);
-        }
-        else
-        {
-            if (if_true == 1)
-            {
-                calcul = calcul_for_reverse(tmp);
-                if_true = 0;
-            }
-            reverse(&tmp);
-            index++;
-        }
-    }
-    *a = tmp;
-    print(*a, *b);
-}
 
-void step_two(t_stack **a, t_stack **b)
-{
-    t_stack *tmp;
-    int number;
-    int count;
-    int index;
 
-    index = 0;
-    count = 0;
-    tmp = *a;
-    number = 0;
-    while (tmp)
-    {
-        number = INT_MAX;
-        while (tmp)
-        {
-            if (tmp->number <= number)
-                number = tmp->number;
-            tmp = tmp->next;
-        }
-        tmp = *a;
-        while (tmp->number != number)
-            reverse(&tmp);
-        push(&(*b), &tmp);
-        count++;
-    }
-    *a = tmp;
-    while(index < count)
-    {
-        push(&(*a), &(*b));
-        index++;
-    }
-    print(*a, *b);
-}
 int main(int ac, char **av)
 {
     t_stack *a;

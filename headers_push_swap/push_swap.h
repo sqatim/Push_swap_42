@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/03/30 18:13:44 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:31:19 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,29 @@
 #include <limits.h>
 #include "../libft/libft.h"
 
+typedef struct s_save
+{
+    int min_a;
+    int max_a;
+    int min_b;
+    int max_b;
+    int min;
+    int max;
+}                   t_save;
+
+
 typedef struct s_stack
 {
     int number;
     struct s_stack *next;
     struct s_stack *previous;
 } t_stack;
+
+typedef struct s_tmp
+{
+    t_stack *a;
+    t_stack *b;
+}               t_tmp;
 
 /*================================  operation  ================================*/
 
@@ -44,10 +61,19 @@ t_stack *allocation(t_stack *stack_a, int nbr);
 
 void check_for_duplicates(t_stack *a);
 t_stack *check_affec(int ac, char **av, t_stack *a);
+int check_tri(t_stack *a, t_stack *b);
 
 /*================================  read  ================================*/
 
 void read_instructions(t_stack **a, t_stack **b);
+
+/*================================  search  ================================*/
+
+int search_for_pivot(t_stack *a, int *calcul);
+
+/*================================  search  ================================*/
+
+int calcul_for_reverse(t_stack *a);
 
 /*================================  free  ================================*/
 
