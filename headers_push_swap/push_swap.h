@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/07 18:31:39 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/07 22:46:55 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct s_tools
     int diff_b;
     int len_a;
     int len_b;
+    int count_a;
+    int count_b;
 }               t_tools;
 
 

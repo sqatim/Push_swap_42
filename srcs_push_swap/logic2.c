@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/07 18:47:37 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/07 23:30:00 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,28 +125,35 @@ void step_two(t_stack **a, t_stack **b)
     int min;
     int max;
     t_tools tool;
+    int operation;
 
     tmp = init_tmp(*a, *b);
     save = search_for_minmax(tmp.a, tmp.b);
     tmp = init_tmp(*a, *b);
-    min = search_for_min(save, tmp.b);
-    max = search_for_max(save, tmp.a);
     tmp = init_tmp(*a, *b);
     tmp = init_tmp(*a, *b);
     tool.len_a = count_len_stack(tmp.a);
     tool.len_b = count_len_stack(tmp.b);
-    tool.med_a = tool.len_a/2;
-    tool.med_b = tool.len_b/2;
-    if(tool.len_a % 2 != 0)
+    tool.med_a = tool.len_a / 2;
+    tool.med_b = tool.len_b / 2;
+    if (tool.len_a % 2 != 0)
         tool.med_a++;
-    if(tool.len_b % 2 != 0)
+    if (tool.len_b % 2 != 0)
         tool.med_b++;
     tmp = init_tmp(*a, *b);
-    tool.diff_a = count_to_number(tmp.a, 1) - tool.med_a; 
-    tool.diff_b = count_to_number(tmp.b, 7) - tool.med_b; 
-    // while (tmp.a || tmp.b)
-    // {
-        
-    // }
+    while (tmp.a || tmp.b)
+    {
+        min = search_for_min(save, tmp.b);
+        max = search_for_max(save, tmp.a);
+        tmp = init_tmp(*a, *b);
+        tool.count_a = count_to_number(tmp.a, max);
+        tool.count_b = count_to_number(tmp.b, min);
+        tool.diff_a = tool.count_a - tool.med_a;
+        tool.diff_b = tool.count_b - tool.med_b;
+        getchar();
+        printf("|med.a ==> |%d|\t|diff_a ==> {%d}\n", tool.med_a, tool.diff_a);
+        printf("|med.b ==> |%d|\t|diff_b ==> {%d}\n", tool.med_b, tool.diff_b);
+        getchar();
+    }
 }
 /* ============================ tani test ============================ */
