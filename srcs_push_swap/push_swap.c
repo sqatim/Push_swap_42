@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/07 12:31:21 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/08 18:13:14 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,40 @@ int check_tri(t_stack *a, t_stack *b)
     return (1);
 }
 
+int pivot_approx(t_stack *a, int pivot)
+{
+    int number;
+
+    number = INT_MAX;
+    while(a)
+    {
+        if(a->number == pivot)
+            return (pivot);
+        if(abs(a->number - pivot) < number)
+            number = a->number;
+        a = a->next;
+    }
+    return(number);
+}
 int search_for_pivot(t_stack *a, int *calcul)
 {
     int pivot;
     int counter;
+    t_stack *tmp;
 
     counter = 0;
     pivot = 0;
+    tmp = a;
     while (a)
     {
         pivot += a->number;
         a = a->next;
         counter++;
     }
+    a = tmp;
     *calcul = counter;
     pivot /= counter;
+    pivot = pivot_approx(a, pivot);
     return (pivot);
 }
 int calcul_for_reverse(t_stack *a)
@@ -73,7 +92,7 @@ int main(int ac, char **av)
     {
         a = tmp;
         step_one(&a, &b);
-        step_two(&a, &b);
+        // step_two(&a, &b);
     }
     a = tmp;
 

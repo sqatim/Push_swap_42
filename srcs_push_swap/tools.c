@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:13:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/07 23:25:26 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/08 16:48:19 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,40 @@ int count_to_number(t_stack *stack, int number)
 
 int which_operation(t_stack *a, t_stack *b, t_tools tool)
 {
-	if (tool.diff_a <= 0 && tool.diff_b <= 0)
+	// printf("%d\n", tool.count_b - tool.count_a);
+	if(tool.diff_a <= 0)
+		return (REVERSE_A);
+	else if(tool.diff_a > 0)
+		return (REVERSE_REVERSE_A);
+	else if (tool.diff_a <= 0 && tool.diff_b <= 0)
+	{
+		puts("==== 1 ====");
 		return (RREVERSE);
-	else if (tool.diff_a <= 0 && tool.diff_b > 0 && (tool.count_b - tool.count_a) < tool.diff_b)
+	}
+	else if (tool.diff_a <= 0 && tool.diff_b > 0 && (tool.count_b - tool.count_a) - tool.med_b <= tool.diff_b)
+	{
+		puts("==== 2 ====");
 		return (RREVERSE);
-	else if (tool.diff_b <= 0 && tool.diff_a > 0 && (tool.count_a - tool.count_b) < tool.diff_a)
+	}
+	else if (tool.diff_b <= 0 && tool.diff_a > 0 && (tool.count_a - tool.count_b) - tool.med_a < tool.diff_a)
+	{
+		puts("==== 3 ====");
 		return (RREVERSE);
+	}
 	else if (tool.diff_a > 0 && tool.diff_b > 0)
+	{
+		puts("==== 3 ====");
 		return (RREVERSE_REVERSE);
-	else if (tool.diff_a > 0 && tool.diff_b <= 0 && (tool.count_b + tool.count_a) > tool.diff_b)
+	}
+	else if (tool.diff_a > 0 && tool.diff_b <= 0 && (tool.count_b + tool.count_a) - tool.med_b >= tool.diff_b)
+	{
+		puts("==== 4 ====");
 		return (RREVERSE_REVERSE);
-	else if (tool.diff_b > 0 && tool.diff_a <= 0 && (tool.count_a + tool.count_b) > tool.diff_a)
+	}
+	else if (tool.diff_b > 0 && tool.diff_a <= 0 && (tool.count_a + tool.count_b) - tool.med_a > tool.diff_a)
+	{
+		puts("==== 5 ====");
 		return (RREVERSE_REVERSE);
-	return (0);
+	}
+	return (5000);
 }

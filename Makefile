@@ -22,7 +22,7 @@ SRC_PUSH_SWAP_NAME=push_swap.c\
 			check_affectation.c\
 			free.c\
 			print.c\
-			logic2.c\
+			logic1.c\
 			tools.c\
 
 		

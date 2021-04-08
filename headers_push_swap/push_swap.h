@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/07 22:46:55 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/08 16:23:31 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,11 @@ int search_for_pivot(t_stack *a, int *calcul);
 
 int calcul_for_reverse(t_stack *a);
 
-/*================================  search  ================================*/
+/*================================  tool     ================================*/
 
 int count_to_number(t_stack *stack, int number);
 int count_len_stack(t_stack *stack);
+int which_operation(t_stack *a, t_stack *b, t_tools tool);
 
 /*================================  free  ================================*/
 

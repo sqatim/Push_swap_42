@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:36:43 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/28 12:57:29 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/08 11:55:43 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void instruction(char **buffer, t_stack **a, t_stack **b)
     else if (!(ft_strncmp(*buffer, "rrr\n", 4)))
         rreverse_reverse(&(*a), &(*b));
     else
-    {
-        free_string(&(*buffer));
-        free_2_stack(&(*a), &(*b));
+    // {
+    //     free_string(&(*buffer));
+    //     free_2_stack(&(*a), &(*b));
         ft_putendl_fd("Error", 2);
-        exit(1);
-    }
+        // exit(1);
+    // }
 }
 void read_instructions(t_stack **a, t_stack **b)
 {
