@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/08 18:13:14 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/09 00:29:40 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ int pivot_approx(t_stack *a, int pivot)
     int number;
 
     number = INT_MAX;
-    while(a)
+    while (a)
     {
-        if(a->number == pivot)
+        if (a->number == pivot)
             return (pivot);
-        if(abs(a->number - pivot) < number)
+        if (abs(a->number - pivot) < number)
             number = a->number;
         a = a->next;
     }
-    return(number);
+    return (number);
 }
 int search_for_pivot(t_stack *a, int *calcul)
 {
@@ -74,9 +74,6 @@ int calcul_for_reverse(t_stack *a)
     return (counter);
 }
 
-
-
-
 int main(int ac, char **av)
 {
     t_stack *a;
@@ -92,11 +89,10 @@ int main(int ac, char **av)
     {
         a = tmp;
         step_one(&a, &b);
-        // step_two(&a, &b);
+        step_two(&a, &b);
     }
-    a = tmp;
-
-    a = tmp;
+    // a = tmp;
+    // print(a, b);
     // free_2_stack(&a, &b);
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/08 16:23:31 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/08 23:36:46 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ typedef struct s_tools
 
 /*================================  operation  ================================*/
 
-void swap(t_stack **stack);
-void reverse(t_stack **stack);
-void push(t_stack **first, t_stack **second);
-void reverse_reverse(t_stack **stack);
-void rreverse_reverse(t_stack **a, t_stack **b);
-void rreverse(t_stack **a, t_stack **b);
-void sswap(t_stack **a, t_stack **b);
+void swap(t_stack **stack, char *name);
+void reverse(t_stack **stack, char *name);
+void push(t_stack **first, t_stack **second, char *name);
+void reverse_reverse(t_stack **stack, char *name);
+void rreverse_reverse(t_stack **a, t_stack **b, char *name);
+void rreverse(t_stack **a, t_stack **b, char *name);
+void sswap(t_stack **a, t_stack **b, char *name);
 
 /*================================  steps  ================================*/
 
