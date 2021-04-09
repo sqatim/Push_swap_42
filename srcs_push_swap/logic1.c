@@ -6,7 +6,7 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/09 00:27:04 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/09 01:01:55 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,21 +85,24 @@ t_save search_for_minmax(t_stack *a, t_stack *b)
     return (save);
 }
 
-void chose_operation(t_tmp *tmp, int numb)
+void chose_operation(t_tmp *tmp, int numb, int if_true)
 {
     t_stack *tmp_a;
     t_tools tool;
-    int check;
+    static int check;
 
-    tmp_a = tmp->a;
-    tool.len_a = count_len_stack(tmp_a);
-    tool.med_a = tool.len_a / 2;
-    if (tool.len_a % 2 != 0)
-        tool.med_a++;
-    tmp_a = tmp->a;
-    tool.count_a = count_to_number(tmp_a, numb);
-    tool.diff_a = tool.count_a - tool.med_a;
-    check = which_operation(tmp->a, tmp->b, tool);
+    if (if_true == 1)
+    {
+        tmp_a = tmp->a;
+        tool.len_a = count_len_stack(tmp_a);
+        tool.med_a = tool.len_a / 2;
+        if (tool.len_a % 2 != 0)
+            tool.med_a++;
+        tmp_a = tmp->a;
+        tool.count_a = count_to_number(tmp_a, numb);
+        tool.diff_a = tool.count_a - tool.med_a;
+        check = which_operation(tmp->a, tmp->b, tool);
+    }
     if (check == REVERSE_A)
     {
         // puts("===== REVERSE_A =====");
@@ -117,7 +120,7 @@ void step_one(t_stack **a, t_stack **b)
 {
     t_tmp tmp;
     t_stack *tmp_a;
-    int if_true;
+    int if_true = 1;
     int pivot;
     int index;
     int calcul;
@@ -143,9 +146,15 @@ void step_one(t_stack **a, t_stack **b)
                 tmp_a = tmp_a->next;
             }
             if (tmp.a->number <= pivot && tmp.a->number == numb)
+            {
                 push(&tmp.b, &tmp.a, "pb");
+                if_true = 1;
+            }
             else
-                chose_operation(&tmp, numb);
+            {
+                chose_operation(&tmp, numb, if_true);
+                if_true = 0;
+            }
             // printf("pivot ==> %d\n", pivot);
             if (tmp.b && tmp.b->number == pivot)
                 break;
