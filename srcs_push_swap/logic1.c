@@ -6,7 +6,7 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/09 01:01:55 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/09 12:58:06 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,12 @@ void chose_operation(t_tmp *tmp, int numb, int if_true)
         // print(tmp->a, tmp->b);
     }
 }
+
+// je go n9assi o nji n9ad hadi
+t_bef_pivot *save_number(int number)
+{
+    
+}
 void step_one(t_stack **a, t_stack **b)
 {
     t_tmp tmp;
@@ -128,6 +134,7 @@ void step_one(t_stack **a, t_stack **b)
     int check;
     t_save save;
     t_tools tool;
+    t_bef_pivot b_pivot;
 
     tmp = init_tmp(*a, *b);
     while (tmp.a)
@@ -152,6 +159,8 @@ void step_one(t_stack **a, t_stack **b)
             }
             else
             {
+                if(tmp.a->number <= pivot)
+                    b_pivot = save_number(tmp.a->number);
                 chose_operation(&tmp, numb, if_true);
                 if_true = 0;
             }

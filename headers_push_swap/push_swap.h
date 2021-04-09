@@ -6,7 +6,7 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/08 23:36:46 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/09 12:04:29 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 #include <stdio.h>
 #include <limits.h>
 #include "../libft/libft.h"
+
+typedef struct s_bef_pivot
+{
+    int number;
+    int counter;
+    struct s_bef_pivot *next;
+    struct s_bef_pivot *previous;
+} t_bef_pivot;
 
 typedef enum e_operation
 {
@@ -31,7 +39,7 @@ typedef enum e_operation
     RREVERSE_REVERSE,
     PUSH_A,
     PUSH_B
-}           t_operation;
+} t_operation;
 
 typedef struct s_save
 {
@@ -41,8 +49,7 @@ typedef struct s_save
     int max_b;
     int min;
     int max;
-}                   t_save;
-
+} t_save;
 
 typedef struct s_stack
 {
@@ -55,7 +62,7 @@ typedef struct s_tmp
 {
     t_stack *a;
     t_stack *b;
-}               t_tmp;
+} t_tmp;
 
 typedef struct s_tools
 {
@@ -67,8 +74,7 @@ typedef struct s_tools
     int len_b;
     int count_a;
     int count_b;
-}               t_tools;
-
+} t_tools;
 
 /*================================  operation  ================================*/
 
