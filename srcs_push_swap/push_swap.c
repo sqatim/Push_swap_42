@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/09 01:02:07 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/09 17:06:20 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int main(int ac, char **av)
     {
         a = tmp;
         step_one(&a, &b);
-        step_two(&a, &b);
+        // step_two(&a, &b);
     }
     // a = tmp;
     print(a, b);

@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   logic1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/09 12:58:06 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/09 17:03:38 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* ============================ tani test ============================ */
-/* ============================   play   ============================ */
+
+// je push au stack b le min au max et le repusher to a
+
+/* ============================   pause   ============================ */
 
 t_tmp init_tmp(t_stack *a, t_stack *b)
 {
@@ -117,10 +120,29 @@ void chose_operation(t_tmp *tmp, int numb, int if_true)
     }
 }
 
-// je go n9assi o nji n9ad hadi
-t_bef_pivot *save_number(int number)
+t_bef_pivot *save_number(t_bef_pivot *b_pivot, int number)
 {
-    
+    t_bef_pivot *new;
+    t_bef_pivot *tmp;
+
+    if(!(new = (t_bef_pivot *)malloc(sizeof(t_bef_pivot))))
+        return (NULL);
+    new->number = number;
+    new->counter = 0;
+    new->next = NULL;
+    new->previous = NULL;
+    if(!b_pivot)
+        return(new);
+    tmp = b_pivot;
+    while(tmp->next)
+    {
+        tmp->counter++;
+        tmp = tmp->next;
+    }
+    tmp->counter++;
+    new->previous = tmp;
+    tmp->next = new;
+    return(b_pivot);
 }
 void step_one(t_stack **a, t_stack **b)
 {
@@ -134,8 +156,9 @@ void step_one(t_stack **a, t_stack **b)
     int check;
     t_save save;
     t_tools tool;
-    t_bef_pivot b_pivot;
+    t_bef_pivot *b_pivot;
 
+    b_pivot = NULL;
     tmp = init_tmp(*a, *b);
     while (tmp.a)
     {
@@ -159,12 +182,9 @@ void step_one(t_stack **a, t_stack **b)
             }
             else
             {
-                if(tmp.a->number <= pivot)
-                    b_pivot = save_number(tmp.a->number);
                 chose_operation(&tmp, numb, if_true);
                 if_true = 0;
             }
-            // printf("pivot ==> %d\n", pivot);
             if (tmp.b && tmp.b->number == pivot)
                 break;
         }

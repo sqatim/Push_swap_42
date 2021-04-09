@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/09 12:04:29 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/09 17:05:39 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ int calcul_for_reverse(t_stack *a);
 int count_to_number(t_stack *stack, int number);
 int count_len_stack(t_stack *stack);
 int which_operation(t_stack *a, t_stack *b, t_tools tool);
+t_tmp init_tmp(t_stack *a, t_stack *b);
+void chose_operation(t_tmp *tmp, int numb, int if_true);
 
 /*================================  free  ================================*/
 
