@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:13:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/10 16:27:17 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/10 20:12:18 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int count_to_number(t_stack *stack, int number)
 	return (counter);
 }
 
-int which_operation(t_stack *a, t_tools tool)
+int which_operation(int diff)
 {
 	// printf("%d\n", tool.count_b - tool.count_a);
-	if(tool.diff <= 0)
+	if (diff <= 0)
 		return (REVERSE);
-	else if(tool.diff > 0)
+	else if (diff > 0)
 		return (REVERSE_REVERSE);
 	// else if (tool.diff_a <= 0 && tool.diff_b <= 0)
 	// {

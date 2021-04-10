@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:45:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/10 16:27:21 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/10 20:58:56 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,46 +27,78 @@ t_tmp init_tmp(t_stack *a, t_stack *b)
     return (tmp);
 }
 
-void chose_operation_a(t_tmp *tmp, int numb, int if_true)
-{
-    t_stack *tmp_a;
-    t_tools tool;
-    static int check;
+// void chose_operation_a(t_tmp *tmp, int numb, int if_true)
+// {
+//     t_stack *tmp_a;
+//     t_tools tool;
+//     static int check;
 
-    if (if_true == 1)
-    {
-        tmp_a = tmp->a;
-        tool.len_a = count_len_stack(tmp_a);
-        tool.med_a = tool.len_a / 2;
-        if (tool.len_a % 2 != 0)
-            tool.med_a++;
-        tmp_a = tmp->a;
-        tool.count_a = count_to_number(tmp_a, numb);
-        tool.diff_a = tool.count_a - tool.med_a;
-        check = which_operation(tmp->a, tmp->b, tool);
-    }
-    if (check == REVERSE_A)
-    {
-        // puts("===== REVERSE_A =====");
-        reverse(&tmp->a, "ra");
-        // print(tmp->a, tmp->b);
-    }
-    else if (check == REVERSE_REVERSE_A)
-    {
-        // puts("===== REVERSE_REVERSE_A =====");
-        reverse_reverse(&tmp->a, "rra");
-        // print(tmp->a, tmp->b);
-    }
-}
-int soso(t_stack *b, t_tools tool)
-{
-    if (tool.diff_b <= 0)
-        return (REVERSE_B);
-    else if (tool.diff_b > 0)
-        return (REVERSE_REVERSE_B);
-    return (5000);
-}
-void chose_operation_b(t_tmp *tmp, int numb, int if_true)
+//     if (if_true == 1)
+//     {
+//         tmp_a = tmp->a;
+//         tool.len_a = count_len_stack(tmp_a);
+//         tool.med_a = tool.len_a / 2;
+//         if (tool.len_a % 2 != 0)
+//             tool.med_a++;
+//         tmp_a = tmp->a;
+//         tool.count_a = count_to_number(tmp_a, numb);
+//         tool.diff_a = tool.count_a - tool.med_a;
+//         check = which_operation(tmp->a, tmp->b, tool);
+//     }
+//     if (check == REVERSE_A)
+//     {
+//         // puts("===== REVERSE_A =====");
+//         reverse(&tmp->a, "ra");
+//         // print(tmp->a, tmp->b);
+//     }
+//     else if (check == REVERSE_REVERSE_A)
+//     {
+//         // puts("===== REVERSE_REVERSE_A =====");
+//         reverse_reverse(&tmp->a, "rra");
+//         // print(tmp->a, tmp->b);
+//     }
+// }
+// int soso(t_stack *b, t_tools tool)
+// {
+//     if (tool.diff_b <= 0)
+//         return (REVERSE_B);
+//     else if (tool.diff_b > 0)
+//         return (REVERSE_REVERSE_B);
+//     return (5000);
+// }
+// void chose_operation_b(t_tmp *tmp, int numb, int if_true)
+// {
+//     t_stack *tmp;
+//     t_tools tool;
+//     static int check;
+
+//     if (if_true == 1)
+//     {
+//         tmp = tmp->b;
+//         tool.len_b = count_len_stack(tmp);
+//         tool.med_b = tool.len_b / 2;
+//         if (tool.len_b % 2 != 0)
+//             tool.med_b++;
+//         tmp = tmp->b;
+//         tool.count_b = count_to_number(tmp, numb);
+//         tool.diff_b = tool.count_b - tool.med_b;
+//         check = soso(tmp->b, tool);
+//     }
+//     if (check == REVERSE_B)
+//     {
+//         // puts("===== REVERSE_B =====");
+//         reverse(&tmp->b, "rb");
+//         // print(tmp->b, tmp->b);
+//     }
+//     else if (check == REVERSE_REVERSE_B)
+//     {
+//         // puts("===== REVERSE_REVERSE_B =====");
+//         reverse_reverse(&tmp->b, "rrb");
+//         // print(tmp->a, tmp->b);
+//     }
+// }
+
+void chose_operation(t_stack **stack, int numb, int if_true, char c)
 {
     t_stack *tmp;
     t_tools tool;
@@ -74,26 +106,32 @@ void chose_operation_b(t_tmp *tmp, int numb, int if_true)
 
     if (if_true == 1)
     {
-        tmp = tmp->b;
-        tool.len_b = count_len_stack(tmp);
-        tool.med_b = tool.len_b / 2;
-        if (tool.len_b % 2 != 0)
-            tool.med_b++;
-        tmp = tmp->b;
-        tool.count_b = count_to_number(tmp, numb);
-        tool.diff_b = tool.count_b - tool.med_b;
-        check = soso(tmp->b, tool);
+        tmp = *stack;
+        tool.len = count_len_stack(tmp);
+        tool.med = tool.len / 2;
+        if (tool.len % 2 != 0)
+            tool.med++;
+        tmp = *stack;
+        tool.count = count_to_number(tmp, numb);
+        tool.diff = tool.count - tool.med;
+        check = which_operation(tool.diff);
     }
-    if (check == REVERSE_B)
+    if (check == REVERSE)
     {
-        // puts("===== REVERSE_B =====");
-        reverse(&tmp->b, "rb");
-        // print(tmp->b, tmp->b);
+        // puts("===== REVERSE_A =====");
+        if (c == 'a')
+            reverse(&(*stack), "ra"); //ra
+        else
+            reverse(&(*stack), "rb");
+        // print(tmp->a, tmp->b);
     }
-    else if (check == REVERSE_REVERSE_B)
+    else if (check == REVERSE_REVERSE)
     {
-        // puts("===== REVERSE_REVERSE_B =====");
-        reverse_reverse(&tmp->b, "rrb");
+        // puts("===== REVERSE_REVERSE_A =====");
+        if (c == 'a')
+            reverse_reverse(&(*stack), "rra"); //ra
+        else
+            reverse_reverse(&(*stack), "rrb");
         // print(tmp->a, tmp->b);
     }
 }
@@ -173,18 +211,24 @@ void step_one(t_stack **a, t_stack **b, t_pivot *pivot)
     int len;
 
     len = count_len_pivot(pivot);
+    // printf("pivot ==> %d\n", pivot->pivot);
+    // getchar();
     while (index < len)
     {
         tmp = init_tmp(*a, *b);
-        while (counter <= pivot->pivot)
+        while (counter < pivot->pivot)
         {
             if (tmp.a->number <= pivot->pivot)
             {
+                // printf("number ==> %d\n", tmp.a->number);
+                // getchar();
                 push(&tmp.b, &tmp.a, "pb");
                 counter++;
             }
             else
+            {
                 reverse(&tmp.a, "ra");
+            }
         }
         pivot = pivot->next;
         index++;
@@ -254,7 +298,9 @@ void step_two(t_stack **a, t_stack **b, t_pivot *pivot)
         }
         else
         {
-            chose_operation_a(&tmp.a, max, if_true);
+            chose_operation(&tmp.a, max, if_true, 'a');
+            // print(tmp.a, tmp.b);
+            // getchar();
             if_true = 0;
         }
     }
@@ -280,10 +326,10 @@ void step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
     while (tmp.b)
     {
         tmp = init_tmp(*a, *b);
-        if (pivot)
+        if (pivot->previous)
             min = pivot->pivot - 1;
         else
-            min = 0;
+            min = minimum(tmp.b);
         while (tmp.a->number != min)
         {
             tmp_b = tmp.b;
@@ -302,7 +348,9 @@ void step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
             }
             else
             {
-                chose_operation_b(&tmp, max, if_true);
+                chose_operation(&tmp.b, max, if_true, 'b');
+                // print(tmp.a, tmp.b);
+                // getchar();
                 if_true = 0;
             }
         }

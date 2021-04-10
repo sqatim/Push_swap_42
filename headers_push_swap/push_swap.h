@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/10 16:09:20 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/10 20:13:35 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,11 @@ int calcul_for_reverse(t_stack *a);
 int count_to_number(t_stack *stack, int number);
 int count_len_stack(t_stack *stack);
 int count_len_pivot(t_pivot *pivot);
-int which_operation(t_stack *a, t_stack *b, t_tools tool);
+void chose_operation(t_stack **stack, int numb, int if_true, char c);
 t_tmp init_tmp(t_stack *a, t_stack *b);
 void chose_operation_a(t_tmp *tmp, int numb, int if_true);
 void chose_operation_b(t_tmp *tmp, int numb, int if_true);
+int which_operation(int diff);
 
 /*================================  free  ================================*/
 

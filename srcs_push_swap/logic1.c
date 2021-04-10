@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/10 16:26:23 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/10 20:06:30 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,34 +88,40 @@ t_save search_for_minmax(t_stack *a, t_stack *b)
     return (save);
 }
 
-void chose_operation(t_stack **stack, int numb, int if_true, char carc)
+void chose_operation(t_stack **stack, int numb, int if_true, char c)
 {
-    t_stack *tmp_a;
+    t_stack *tmp;
     t_tools tool;
     static int check;
 
     if (if_true == 1)
     {
-        tmp_a = *stack;
-        tool.len = count_len_stack(tmp_a);
+        tmp = *stack;
+        tool.len = count_len_stack(tmp);
         tool.med = tool.len / 2;
         if (tool.len % 2 != 0)
             tool.med++;
-        tmp_a = *stack;
-        tool.count = count_to_number(tmp_a, numb);
+        tmp = *stack;
+        tool.count = count_to_number(tmp, numb);
         tool.diff = tool.count - tool.med;
         check = which_operation(*stack, tool);
     }
     if (check == REVERSE)
     {
         // puts("===== REVERSE_A =====");
-        reverse(&tmp->a, "ra");
+        if (c == 'a')
+            reverse(&(*stack), "ra"); //ra
+        else
+            reverse(&(*stack), "rb");
         // print(tmp->a, tmp->b);
     }
     else if (check == REVERSE_REVERSE)
     {
         // puts("===== REVERSE_REVERSE_A =====");
-        reverse_reverse(&tmp->a, "rra");
+        if (c == 'a')
+            reverse(&(*stack), "rra"); //ra
+        else
+            reverse(&(*stack), "rrb");
         // print(tmp->a, tmp->b);
     }
 }
