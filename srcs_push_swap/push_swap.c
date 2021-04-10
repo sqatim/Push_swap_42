@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/10 01:01:34 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/10 15:59:24 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int main(int ac, char **av)
         pivot = step_zero(stack);
         step_one(&a, &b, pivot);
         step_two(&a, &b, pivot);
+        step_tree(&a, &b, pivot);
     }
     // a = tmp;
     print(a, b);

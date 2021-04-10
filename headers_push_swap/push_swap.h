@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/10 00:21:20 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/10 16:09:20 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,11 @@ typedef struct s_pivot
 
 typedef enum e_operation
 {
-    SWAP_A,
-    SWAP_B,
+    SWAP,
     SSWAP,
-    REVERSE_A,
-    REVERSE_B,
+    REVERSE,
     RREVERSE,
-    REVERSE_REVERSE_A,
-    REVERSE_REVERSE_B,
+    REVERSE_REVERSE,
     RREVERSE_REVERSE,
     PUSH_A,
     PUSH_B
@@ -65,14 +62,10 @@ typedef struct s_tmp
 
 typedef struct s_tools
 {
-    int med_a;
-    int med_b;
-    int diff_a;
-    int diff_b;
-    int len_a;
-    int len_b;
-    int count_a;
-    int count_b;
+    int med;
+    int diff;
+    int len;
+    int count;
 } t_tools;
 
 /*================================  operation  ================================*/
@@ -89,7 +82,9 @@ void sswap(t_stack **a, t_stack **b, char *name);
 t_pivot *step_zero(t_stack *a);
 void step_one(t_stack **a, t_stack **b, t_pivot *pivot);
 // void step_one(t_stack **a, t_stack **b);
-void step_two(t_stack **a, t_stack **b);
+void step_two(t_stack **a, t_stack **b, t_pivot *pivot);
+// void step_two(t_stack **a, t_stack **b);
+void step_tree(t_stack **a, t_stack **b, t_pivot *pivot);
 
 /*================================  allocation  ================================*/
 
@@ -119,9 +114,11 @@ int calcul_for_reverse(t_stack *a);
 
 int count_to_number(t_stack *stack, int number);
 int count_len_stack(t_stack *stack);
+int count_len_pivot(t_pivot *pivot);
 int which_operation(t_stack *a, t_stack *b, t_tools tool);
 t_tmp init_tmp(t_stack *a, t_stack *b);
-void chose_operation(t_tmp *tmp, int numb, int if_true);
+void chose_operation_a(t_tmp *tmp, int numb, int if_true);
+void chose_operation_b(t_tmp *tmp, int numb, int if_true);
 
 /*================================  free  ================================*/
 

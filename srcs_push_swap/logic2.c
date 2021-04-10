@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:45:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/10 01:07:23 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/10 16:27:21 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_tmp init_tmp(t_stack *a, t_stack *b)
     return (tmp);
 }
 
-void chose_operation(t_tmp *tmp, int numb, int if_true)
+void chose_operation_a(t_tmp *tmp, int numb, int if_true)
 {
     t_stack *tmp_a;
     t_tools tool;
@@ -58,6 +58,45 @@ void chose_operation(t_tmp *tmp, int numb, int if_true)
         // print(tmp->a, tmp->b);
     }
 }
+int soso(t_stack *b, t_tools tool)
+{
+    if (tool.diff_b <= 0)
+        return (REVERSE_B);
+    else if (tool.diff_b > 0)
+        return (REVERSE_REVERSE_B);
+    return (5000);
+}
+void chose_operation_b(t_tmp *tmp, int numb, int if_true)
+{
+    t_stack *tmp;
+    t_tools tool;
+    static int check;
+
+    if (if_true == 1)
+    {
+        tmp = tmp->b;
+        tool.len_b = count_len_stack(tmp);
+        tool.med_b = tool.len_b / 2;
+        if (tool.len_b % 2 != 0)
+            tool.med_b++;
+        tmp = tmp->b;
+        tool.count_b = count_to_number(tmp, numb);
+        tool.diff_b = tool.count_b - tool.med_b;
+        check = soso(tmp->b, tool);
+    }
+    if (check == REVERSE_B)
+    {
+        // puts("===== REVERSE_B =====");
+        reverse(&tmp->b, "rb");
+        // print(tmp->b, tmp->b);
+    }
+    else if (check == REVERSE_REVERSE_B)
+    {
+        // puts("===== REVERSE_REVERSE_B =====");
+        reverse_reverse(&tmp->b, "rrb");
+        // print(tmp->a, tmp->b);
+    }
+}
 
 t_pivot *select_pivot(t_pivot *pivot, int number)
 {
@@ -78,11 +117,12 @@ t_pivot *select_pivot(t_pivot *pivot, int number)
     tmp->next = new;
     return (pivot);
 }
+
+// je cherche les pivot
 t_pivot *step_zero(t_stack *a)
 {
     t_stack *tmp;
     t_stack *change;
-    // t_pivot *pivot;
     t_pivot *pivot;
     pivot = NULL;
     int counter = 0;
@@ -91,7 +131,6 @@ t_pivot *step_zero(t_stack *a)
     int number;
     int len;
     tmp = a;
-    print(a, NULL);
     while (tmp)
     {
         change = tmp->next;
@@ -110,7 +149,7 @@ t_pivot *step_zero(t_stack *a)
     tmp = a;
     len = count_len_stack(tmp);
     tmp = a;
-    while (tmp)
+    while (tmp && i < 5)
     {
         if ((i * (len / 5)) == counter)
         {
@@ -120,125 +159,160 @@ t_pivot *step_zero(t_stack *a)
         counter++;
         tmp = tmp->next;
     }
-    // counter = 0;
-    // while (pivot)
-    // {
-    //     printf("|pivot[%d] = %d|\n", counter, pivot->pivot);
-    //     counter++;
-    //     pivot = pivot->next;
-    // }
     return (pivot);
 }
+
+// je push les element qui sont petit du pivot (sauf les dernier apres le dernier pivot)
+
 void step_one(t_stack **a, t_stack **b, t_pivot *pivot)
 {
     t_tmp tmp;
-    t_stack *tmp_a;
-    int if_true = 1;
-    int calcul;
-    int numb;
-    int check;
-    t_save save;
-    t_tools tool;
+    // int if_true = 1;
     int counter = 0;
     int index = 0;
+    int len;
 
-    // tmp = init_tmp(*a, *b);
-    while (index < 4)
+    len = count_len_pivot(pivot);
+    while (index < len)
     {
         tmp = init_tmp(*a, *b);
-        while (counter < pivot->pivot)
+        while (counter <= pivot->pivot)
         {
-            tmp_a = tmp.a;
             if (tmp.a->number <= pivot->pivot)
             {
                 push(&tmp.b, &tmp.a, "pb");
-                if_true = 1;
                 counter++;
             }
             else
-            {
-                chose_operation(&tmp, numb, if_true);
-                if_true = 0;
-            }
+                reverse(&tmp.a, "ra");
         }
         pivot = pivot->next;
         index++;
         *b = tmp.b;
         *a = tmp.a;
     }
-    // while (pivot)
-    // pivot = pivot->previous;
-    while (*a)
-        push(&*b, &*a, "pb");
-    // print(*a, *b);
 }
 
 int maximum(t_stack *stack)
 {
-    int max = INT_MIN;
+    int max;
+    t_stack *tmp;
 
-    while (stack)
+    max = INT_MIN;
+    tmp = stack;
+    while (tmp)
     {
-        if (stack->number >= max)
-            max = stack->number;
-        stack = stack->next;
+        if (tmp->number >= max)
+            max = tmp->number;
+        tmp = tmp->next;
     }
     return (max);
 }
+
+int minimum(t_stack *stack)
+{
+    int min;
+    t_stack *tmp;
+
+    min = INT_MAX;
+    tmp = stack;
+    while (tmp)
+    {
+        if (tmp->number <= min)
+            min = tmp->number;
+        tmp = tmp->next;
+    }
+    return (min);
+}
+// i pushed to stack b the last elements but sorted and take back it to stack a
+
 void step_two(t_stack **a, t_stack **b, t_pivot *pivot)
 {
-    t_stack *tmp_b;
     t_tmp tmp;
-    int max;
-    int counter = 0;
+    t_stack *tmp_a;
     int if_true = 1;
+    t_tools tool;
+    int max;
+    int min;
 
-    tmp_b = *b;
-    max = maximum(tmp_b);
-    // while (index < 19)
-    // {
-    //     tmp = init_tmp(*a, *b);
-    while (counter < 19)
+    tmp = init_tmp(*a, *b);
+    min = minimum(tmp.a);
+    while (tmp.a)
     {
-        tmp_b = tmp.b;
-        if (tmp.b->number > pivot->pivot)
+        tmp_a = tmp.a;
+        max = maximum(tmp.a);
+        while (tmp_a)
+        {
+            if (tmp_a->number <= max)
+                max = tmp_a->number;
+            tmp_a = tmp_a->next;
+        }
+        if (tmp.a->number == max)
         {
             push(&tmp.b, &tmp.a, "pb");
             if_true = 1;
-            counter++;
         }
         else
         {
-            chose_operation(&tmp, numb, if_true);
+            chose_operation_a(&tmp.a, max, if_true);
             if_true = 0;
         }
     }
-    pivot = pivot->next;
-    index++;
     *b = tmp.b;
     *a = tmp.a;
-    // }
-    // while (index < 4)
-    // {
-    //     tmp = init_tmp(*a, *b);
-    //     while (counter < pivot->pivot)
-    //     {
-    //         tmp_a = tmp.a;
-    //         if (tmp.a->number <= pivot->pivot)
-    //         {
-    //             push(&tmp.b, &tmp.a, "pb");
-    //             if_true = 1;
-    //             counter++;
-    //         }
-    //         else
-    //         {
-    //             chose_operation(&tmp, numb, if_true);
-    //             if_true = 0;
-    //         }
-    //     }
-    //     pivot = pivot->next;
-    //     index++;
-    //     *b = tmp.b;
-    //     *a = tmp.a;
-    // }
+    while ((*b)->number >= min)
+        push(&(*a), &(*b), "pa");
+}
+
+void step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
+{
+    t_tmp tmp;
+    t_stack *tmp_b;
+    int if_true = 1;
+    t_tools tool;
+    int max;
+    int min;
+
+    tmp = init_tmp(*a, *b);
+    while (pivot->next)
+        pivot = pivot->next;
+    pivot = pivot->previous;
+    while (tmp.b)
+    {
+        tmp = init_tmp(*a, *b);
+        if (pivot)
+            min = pivot->pivot - 1;
+        else
+            min = 0;
+        while (tmp.a->number != min)
+        {
+            tmp_b = tmp.b;
+            max = maximum(tmp_b);
+            tmp_b = tmp.b;
+            while (tmp_b)
+            {
+                if (tmp_b->number == max && tmp_b->number >= min)
+                    max = tmp_b->number;
+                tmp_b = tmp_b->next;
+            }
+            if (tmp.b->number == max)
+            {
+                push(&tmp.a, &tmp.b, "pa");
+                if_true = 1;
+            }
+            else
+            {
+                chose_operation_b(&tmp, max, if_true);
+                if_true = 0;
+            }
+        }
+        if (pivot)
+        {
+            pivot = pivot->previous;
+        }
+        *b = tmp.b;
+        *a = tmp.a;
+    }
+    *b = tmp.b;
+    *a = tmp.a;
 }
