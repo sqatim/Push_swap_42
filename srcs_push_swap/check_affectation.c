@@ -6,7 +6,7 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/09 00:10:28 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/10 00:23:17 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void check_for_duplicates(t_stack *a)
     }
 }
 
-t_stack *check_affec(int ac, char **av, t_stack *a)
+t_stack *check_affec(int ac, char **av, t_stack *a, t_stack **stack)
 {
     int count;
     int index;
@@ -81,7 +81,9 @@ t_stack *check_affec(int ac, char **av, t_stack *a)
     {
         while (count <= ac)
         {
-            a = allocation(a, ft_atoi(av[index++]));
+            a = allocation(a, ft_atoi(av[index]));
+            *stack = allocation(*stack, ft_atoi(av[index]));
+            index++;
             count++;
         }
     }

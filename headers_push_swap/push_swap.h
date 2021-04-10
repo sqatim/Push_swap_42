@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/09 17:05:39 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/10 00:21:20 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@
 #include <limits.h>
 #include "../libft/libft.h"
 
-typedef struct s_bef_pivot
+typedef struct s_pivot
 {
-    int number;
-    int counter;
-    struct s_bef_pivot *next;
-    struct s_bef_pivot *previous;
-} t_bef_pivot;
+    int pivot;
+    struct s_pivot *next;
+    struct s_pivot *previous;
+} t_pivot;
 
 typedef enum e_operation
 {
@@ -87,8 +86,9 @@ void rreverse(t_stack **a, t_stack **b, char *name);
 void sswap(t_stack **a, t_stack **b, char *name);
 
 /*================================  steps  ================================*/
-
-void step_one(t_stack **a, t_stack **b);
+t_pivot *step_zero(t_stack *a);
+void step_one(t_stack **a, t_stack **b, t_pivot *pivot);
+// void step_one(t_stack **a, t_stack **b);
 void step_two(t_stack **a, t_stack **b);
 
 /*================================  allocation  ================================*/
@@ -99,7 +99,8 @@ t_stack *allocation(t_stack *stack_a, int nbr);
 /*================================  check  ================================*/
 
 void check_for_duplicates(t_stack *a);
-t_stack *check_affec(int ac, char **av, t_stack *a);
+t_stack *check_affec(int ac, char **av, t_stack *a, t_stack **stack);
+// t_stack *check_affec(int ac, char **av, t_stack *a);
 int check_tri(t_stack *a, t_stack *b);
 
 /*================================  read  ================================*/

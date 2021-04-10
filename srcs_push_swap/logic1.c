@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/09 17:03:38 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/10 00:56:34 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ t_tmp init_tmp(t_stack *a, t_stack *b)
     return (tmp);
 }
 
-int search_for_min(t_save save, t_stack *stack)
-{
-    int min;
+// int search_for_min(t_save save, t_stack *stack)
+// {
+//     int min;
 
-    min = save.max_b;
-    while (stack)
-    {
-        if (stack->number <= min && stack->number >= save.min_b && stack->number <= save.max_b)
-            min = stack->number;
-        stack = stack->next;
-    }
-    return (min);
-}
+//     min = save.max_b;
+//     while (stack)
+//     {
+//         if (stack->number <= min && stack->number >= save.min_b && stack->number <= save.max_b)
+//             min = stack->number;
+//         stack = stack->next;
+//     }
+//     return (min);
+// }
 int search_for_max(t_save save, t_stack *stack)
 {
     int max;
