@@ -6,7 +6,7 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:45:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/10 20:58:56 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/11 11:21:08 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ t_pivot *step_zero(t_stack *a)
     tmp = a;
     len = count_len_stack(tmp);
     tmp = a;
+    // 500 => 10
     while (tmp && i < 5)
     {
         if ((i * (len / 5)) == counter)
@@ -216,7 +217,9 @@ void step_one(t_stack **a, t_stack **b, t_pivot *pivot)
     while (index < len)
     {
         tmp = init_tmp(*a, *b);
-        while (counter < pivot->pivot)
+        // printf("pivot ==> %d\n", pivot->pivot);
+        // getchar();
+        while (counter <= pivot->pivot)
         {
             if (tmp.a->number <= pivot->pivot)
             {
@@ -281,10 +284,15 @@ void step_two(t_stack **a, t_stack **b, t_pivot *pivot)
 
     tmp = init_tmp(*a, *b);
     min = minimum(tmp.a);
+    // printf("min ==> %d\n", min);
+    // print(tmp.a, tmp.b);
+    // getchar();
     while (tmp.a)
     {
         tmp_a = tmp.a;
         max = maximum(tmp.a);
+        // printf("max ==> %d\n", max);
+        // getchar();
         while (tmp_a)
         {
             if (tmp_a->number <= max)
@@ -329,7 +337,9 @@ void step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
         if (pivot->previous)
             min = pivot->pivot - 1;
         else
+        {
             min = minimum(tmp.b);
+        }
         while (tmp.a->number != min)
         {
             tmp_b = tmp.b;
