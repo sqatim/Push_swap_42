@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 20:34:44 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/08 23:40:37 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/12 12:01:01 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ void push(t_stack **first, t_stack **second, char *name)
     t_stack *tmp;
     tmp = NULL;
 
-    // ft_putendl_fd("i am here",1);
-    // printf("number -> %d\n",(*second)->number);
     if (*second == NULL)
         ft_putendl_fd("Second Tab is empty", 1);
     else
