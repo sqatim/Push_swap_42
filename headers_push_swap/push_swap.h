@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/12 18:23:58 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:53:03 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,9 @@ typedef struct s_pivot
 
 typedef enum e_operation
 {
-    SWAP,
-    SSWAP,
     REVERSE,
-    REVERSE_A,
-    RREVERSE,
     REVERSE_REVERSE,
-    REVERSE_REVERSE_A,
-    RREVERSE_REVERSE,
-    PUSH_A,
-    PUSH_B
 } t_operation;
-
-typedef struct s_save
-{
-    int min_a;
-    int max_a;
-    int min_b;
-    int max_b;
-    int min;
-    int max;
-} t_save;
 
 typedef struct s_stack
 {
@@ -65,23 +47,16 @@ typedef struct s_tmp
 typedef struct s_tools
 {
     int med;
-    int med_a;
-    int med_b;
     int diff;
-    int diff_a;
-    int diff_b;
     int len;
-    int len_a;
     int count;
-    int count_a;
-    int count_b;
 } t_tools;
 
 
 /*================================  operation  ================================*/
 void logic1(t_stack **a);
-void logic2(t_stack **a, t_stack **b, t_stack *stack ,int len);
-void logic3(t_stack **a, t_stack **b, t_stack *stack, int len);
+void logic2(t_stack **a, t_stack **b, int len);
+void logic3(t_stack **a, t_stack **b);
 void logic4(t_stack **a, t_stack **b, t_stack *stack, int len);
 t_stack *change_element(t_stack *a);
 /*================================  operation  ================================*/
@@ -93,14 +68,6 @@ void reverse_reverse(t_stack **stack, char *name);
 void rreverse_reverse(t_stack **a, t_stack **b, char *name);
 void rreverse(t_stack **a, t_stack **b, char *name);
 void sswap(t_stack **a, t_stack **b, char *name);
-
-/*================================  steps  ================================*/
-// t_pivot *step_zero(t_stack *a);
-// void step_one(t_stack **a, t_stack **b, t_pivot *pivot);
-// // void step_one(t_stack **a, t_stack **b);
-// void step_two(t_stack **a, t_stack **b, t_pivot *pivot);
-// // void step_two(t_stack **a, t_stack **b);
-// void step_tree(t_stack **a, t_stack **b, t_pivot *pivot);
 
 /*================================  allocation  ================================*/
 
@@ -138,6 +105,7 @@ void chose_operation_b(t_tmp *tmp, int numb, int if_true);
 int which_operation(int diff);
 int minimum(t_stack *stack);
 int maximum(t_stack *stack);
+char			**ft_space_split(char const *s);
 
 /*================================  free  ================================*/
 

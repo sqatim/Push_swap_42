@@ -18,13 +18,13 @@ int main(int ac, char **av)
             if (b)
                 printf("stack b Not Empty");
             free_2_stack(&a, &b);
-            ft_putendl_fd("KO", 1);
+            ft_putendl_fd("\033[1;31mKO\033[0m", 1);
             exit(1);
         }
         a = a->next;
     }
     a = tmp;
     free_2_stack(&a, &b);
-    ft_putendl_fd("OK", 1);
+    ft_putendl_fd("\033[1;32mOK\033[0m", 1);
     return (0);
 }

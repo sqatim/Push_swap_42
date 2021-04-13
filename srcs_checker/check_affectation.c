@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/29 15:03:58 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/13 13:45:57 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ int check_if_int(char *str)
 int check_for_errors(char **av)
 {
     int index;
-    int i;
+    
     index = 1;
-
     while (av[index])
     {
         if (!(check_if_int(av[index])))
@@ -72,17 +71,28 @@ t_stack *check_affec(int ac, char **av, t_stack *a)
 {
     int count;
     int index;
+    char *str;
+    char **tab;
 
     count = 2;
     index = 1;
-    if (!check_for_errors(av))
-        exit(1);
-    if (ac > 2)
+    str = ft_strdup("\0");
+    while (av[index])
     {
-        while (count <= ac)
+        str = ft_strjoin(str, av[index]);
+        str = ft_strjoin(str, " ");
+        index++;
+    }
+    tab = ft_space_split(str);
+    if (!check_for_errors(tab))
+        exit(1);
+    index = 0;
+    if (ac > 1)
+    {
+        while (tab[index])
         {
-            a = allocation(a, ft_atoi(av[index++]));
-            count++;
+            a = allocation(a, ft_atoi(tab[index]));
+            index++;
         }
     }
     else

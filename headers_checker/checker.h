@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../libft/libft.h"
+#include "get_next_line.h"
 
 typedef struct s_stack
 {
@@ -53,6 +54,10 @@ void read_instructions(t_stack **a, t_stack **b);
 void free_string(char **str);
 void free_stack(t_stack **stack);
 void free_2_stack(t_stack **a, t_stack **b);
+
+/*================================  tools  ================================*/
+
+char			**ft_space_split(char const *s);
 
 /*================================  print  ================================*/
 

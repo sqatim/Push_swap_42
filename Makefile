@@ -12,9 +12,12 @@ SRC_CHECKER_NAME=checker.c\
 			allocation.c\
 			operation.c\
 			check_affectation.c\
+			get_next_line.c\
+			get_next_line_utils.c\
 			print.c\
 			read.c\
 			free.c\
+			ft_space_split.c\
 
 SRC_PUSH_SWAP_NAME=push_swap.c\
 			allocation.c\
@@ -27,6 +30,7 @@ SRC_PUSH_SWAP_NAME=push_swap.c\
 			logic3.c\
 			logic4.c\
 			tools.c\
+			ft_space_split.c\
 
 		
 
@@ -47,7 +51,7 @@ SRC_PUSH_SWAP= $(addprefix $(SRC_PUSH_SWAP_PATH)/,$(SRC_PUSH_SWAP_NAME))
 HDR_PUSH_SWAP= $(addprefix $(HDR_PUSH_SWAP_PATH)/,$(HDR_PUSH_SWAP_NAME))
 
 LIB= libft.a
-# FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror
 LLIB_FLAG= -L$(LIB_PATH) libft/libft.a
 H_CHECKER_FLAG= -I $(HDR_CHECKER_PATH)
 

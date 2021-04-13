@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/12 18:31:39 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:08:13 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,16 @@ int main(int ac, char **av)
     if (!(check_tri(a, b)))
     {
         len = count_len_stack(a);
-        if(len == 2)
+        if (len == 2)
             swap(&a, "sa");
-        else if(len == 3)
+        else if (len == 3)
             logic1(&a);
-        else if(len <= 5)
-            logic2(&a, &b, stack, len);
-        else if (len >= 20)
+        else if (len <= 5)
+            logic2(&a, &b, len);
+        else if (len < 25)
+            logic3(&a, &b);
+        else if (len >= 25)
             logic4(&a, &b, stack, len);
-        else if (len < 20)
-            logic3(&a, &b, stack, len);
     }
     // a = tmp;
     // print(a, b);

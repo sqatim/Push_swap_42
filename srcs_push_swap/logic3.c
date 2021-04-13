@@ -1,216 +1,103 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   logic1.c                                           :+:      :+:    :+:   */
+/*   logic3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/12 15:31:48 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/13 17:05:10 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* ============================ tani test ============================ */
+/* 
+**  step one    :   I push from the smallest to the largest from stack 'A' To 'B'
+**  step two    :   I push all element to stack 'A'
+*/
 
-// je push au stack b le min au max et le repusher to a
-
-/* ============================   pause   ============================ */
-int which_operation1(t_stack *a, t_stack *b, t_tools tool)
+void	chose_operation1(t_stack **stack, int numb, int if_true)
 {
-	// printf("%d\n", tool.count_b - tool.count_a);
-	if(tool.diff_a <= 0)
-		return (REVERSE_A);
-	else if(tool.diff_a > 0)
-		return (REVERSE_REVERSE_A);
-	else if (tool.diff_a <= 0 && tool.diff_b <= 0)
+	t_stack		*tmp;
+	t_tools		tool;
+	static int	check;
+
+	if (if_true == 1)
 	{
-		puts("==== 1 ====");
-		return (RREVERSE);
+		tmp = *stack;
+		tool.len = count_len_stack(tmp);
+		tool.med = tool.len / 2;
+		if (tool.len % 2 != 0)
+			tool.med++;
+		tmp = *stack;
+		tool.count = count_to_number(tmp, numb);
+		tool.diff = tool.count - tool.med;
+		check = which_operation(tool.diff);
 	}
-	else if (tool.diff_a <= 0 && tool.diff_b > 0 && (tool.count_b - tool.count_a) - tool.med_b <= tool.diff_b)
-	{
-		puts("==== 2 ====");
-		return (RREVERSE);
-	}
-	else if (tool.diff_b <= 0 && tool.diff_a > 0 && (tool.count_a - tool.count_b) - tool.med_a < tool.diff_a)
-	{
-		puts("==== 3 ====");
-		return (RREVERSE);
-	}
-	else if (tool.diff_a > 0 && tool.diff_b > 0)
-	{
-		puts("==== 3 ====");
-		return (RREVERSE_REVERSE);
-	}
-	else if (tool.diff_a > 0 && tool.diff_b <= 0 && (tool.count_b + tool.count_a) - tool.med_b >= tool.diff_b)
-	{
-		puts("==== 4 ====");
-		return (RREVERSE_REVERSE);
-	}
-	else if (tool.diff_b > 0 && tool.diff_a <= 0 && (tool.count_a + tool.count_b) - tool.med_a > tool.diff_a)
-	{
-		puts("==== 5 ====");
-		return (RREVERSE_REVERSE);
-	}
-	return (5000);
+	if (check == REVERSE)
+		reverse(&(*stack), "ra");
+	else if (check == REVERSE_REVERSE)
+		reverse_reverse(&(*stack), "rra");
 }
 
-// int search_for_min(t_save save, t_stack *stack)
-// {
-//     int min;
-
-//     min = save.max_b;
-//     while (stack)
-//     {
-//         if (stack->number <= min && stack->number >= save.min_b && stack->number <= save.max_b)
-//             min = stack->number;
-//         stack = stack->next;
-//     }
-//     return (min);
-// }
-int search_for_max(t_save save, t_stack *stack)
+int	select_number(t_stack *a, int pivot)
 {
-    int max;
+	int		number;
+	t_stack	*tmp_a;
 
-    max = save.min_a;
-    while (stack)
-    {
-        if (stack->number >= max && stack->number >= save.min_a && stack->number <= save.max_a)
-            max = stack->number;
-        stack = stack->next;
-    }
-    return (max);
+	tmp_a = a;
+	number = pivot;
+	while (tmp_a)
+	{
+		if (tmp_a->number < number)
+			number = tmp_a->number;
+		tmp_a = tmp_a->next;
+	}
+	return (number);
 }
 
-t_save search_for_minmax(t_stack *a, t_stack *b)
+void	push_or_operation(t_stack **a, t_stack **b, int pivot, int *if_true)
 {
-    t_save save;
+	int	number;
 
-    save.min = INT_MAX;
-    save.max = INT_MIN;
-    while (a)
-    {
-        if (a->number < save.min)
-            save.min = a->number;
-        if (a->number > save.max)
-            save.max = a->number;
-        a = a->next;
-    }
-    save.min_a = save.min;
-    save.max_a = save.max;
-    if (b)
-    {
-        save.min = INT_MAX;
-        save.max = INT_MIN;
-        while (b)
-        {
-            if (b->number < save.min)
-                save.min = b->number;
-            if (b->number > save.max)
-                save.max = b->number;
-            b = b->next;
-        }
-        save.min_b = save.min;
-        save.max_b = save.max;
-    }
-    return (save);
+	number = select_number(*a, pivot);
+	if ((*a)->number <= pivot && (*a)->number == number)
+	{
+		push(&(*b), &(*a), "pb");
+		*if_true = 1;
+	}
+	else
+	{
+		chose_operation1(&(*a), number, *if_true);
+		*if_true = 0;
+	}
 }
 
-void chose_operation1(t_tmp *tmp, int numb, int if_true)
+void	step_one(t_stack **a, t_stack **b)
 {
-    t_stack *tmp_a;
-    t_tools tool;
-    static int check;
+	t_stack	*tmp_a;
+	int		if_true;
+	int		pivot;
+	int		calcul;
 
-    if (if_true == 1)
-    {
-        tmp_a = tmp->a;
-        tool.len_a = count_len_stack(tmp_a);
-        tool.med_a = tool.len_a / 2;
-        if (tool.len_a % 2 != 0)
-            tool.med_a++;
-        tmp_a = tmp->a;
-        tool.count_a = count_to_number(tmp_a, numb);
-        tool.diff_a = tool.count_a - tool.med_a;
-        check = which_operation1(tmp->a, tmp->b, tool);
-    }
-    if (check == REVERSE_A)
-    {
-        // puts("===== REVERSE_A =====");
-        reverse(&tmp->a, "ra");
-        // print(tmp->a, tmp->b);
-    }
-    else if (check == REVERSE_REVERSE_A)
-    {
-        // puts("===== REVERSE_REVERSE_A =====");
-        reverse_reverse(&tmp->a, "rra");
-        // print(tmp->a, tmp->b);
-    }
-}
-void step_one(t_stack **a, t_stack **b)
-{
-    t_tmp tmp;
-    t_stack *tmp_a;
-    int if_true = 1;
-    int pivot;
-    int index;
-    int calcul;
-    int numb;
-    int check;
-    t_save save;
-    t_tools tool;
-
-    tmp = init_tmp(*a, *b);
-    while (tmp.a)
-    {
-        tmp = init_tmp(*a, *b);
-        pivot = search_for_pivot(tmp.a, &calcul);
-        tmp = init_tmp(*a, *b);
-        while (tmp.a)
-        {
-            tmp_a = tmp.a;
-            numb = pivot;
-            while (tmp_a)
-            {
-                if (tmp_a->number < numb)
-                    numb = tmp_a->number;
-                tmp_a = tmp_a->next;
-            }
-            if (tmp.a->number <= pivot && tmp.a->number == numb)
-            {
-                push(&tmp.b, &tmp.a, "pb");
-                if_true = 1;
-            }
-            else
-            {
-                chose_operation1(&tmp, numb, if_true);
-                if_true = 0;
-            }
-            if (tmp.b && tmp.b->number == pivot)
-                break;
-        }
-        *b = tmp.b;
-        *a = tmp.a;
-    }
-    // print(*a, *b);
+	if_true = 1;
+	while (*a)
+	{
+		tmp_a = *a;
+		pivot = search_for_pivot(tmp_a, &calcul);
+		while (*a)
+		{
+			push_or_operation(&(*a), &(*b), pivot, &if_true);
+			if (*b && (*b)->number == pivot)
+				break ;
+		}
+	}
 }
 
-void step_two(t_stack **a, t_stack **b)
+void	logic3(t_stack **a, t_stack **b)
 {
-    int counter = 0;
-    while (*b)
-    {
-        counter++;
-        push(&(*a), &(*b), "pa");
-    }
-    // printf("counter ==> %d\n", counter);
-}
-/* ============================ tani test ============================ */
-
-void logic3(t_stack **a, t_stack **b, t_stack *stack, int len)
-{
-    step_one(&(*a), &(*b));
-    step_two(&(*a), &(*b));
+	step_one(&(*a), &(*b));
+	while (*b)
+		push(&(*a), &(*b), "pa");
 }
