@@ -6,12 +6,27 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:27:55 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/28 12:57:29 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 11:21:48 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
+static int len_of_element(int number)
+{
+    int counter;
+
+    counter = 1;
+
+    if (number <= 10)
+        return (1);
+    while (number % 10 >= 10)
+    {
+        number %= 10;
+        counter++;
+    }
+    return (counter);
+}
 void print(t_stack *a, t_stack *b)
 {
     t_stack *tmp_a = a;
@@ -19,7 +34,6 @@ void print(t_stack *a, t_stack *b)
 
     printf("|            a            |            b            |\n");
     printf("|---------------------------------------------------|\n");
-
     while (tmp_a || tmp_b)
     {
         if (tmp_a && tmp_b)
