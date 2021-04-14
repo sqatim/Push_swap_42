@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 20:35:50 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/29 15:34:30 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/14 16:29:27 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,25 @@ t_stack *allocation(t_stack *stack_a, int nbr)
     new->previous = tmp;
     tmp->next = new;
     return (stack_a);
+}
+
+t_pivot	*select_pivot(t_pivot *pivot, int number)
+{
+	t_pivot	*new;
+	t_pivot	*tmp;
+
+	new = (t_pivot *)malloc(sizeof(t_pivot));
+	if (!new)
+		return (NULL);
+	new->next = NULL;
+	new->previous = NULL;
+	new->pivot = number;
+	if (!pivot)
+		return (new);
+	tmp = pivot;
+	while (tmp->next)
+		tmp = tmp->next;
+	new->previous = tmp;
+	tmp->next = new;
+	return (pivot);
 }

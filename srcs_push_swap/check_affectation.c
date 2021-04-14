@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_affectation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/13 22:55:26 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 16:23:40 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,35 @@ void check_for_duplicates(t_stack *a)
     }
 }
 
+int check_arg(char *str)
+{
+    int i;
+
+    i = 1;
+    if(str[0] != '-')
+        return(-1);
+    if(!str[i + 1])
+    {
+        if(str[i] == 's')
+            return (SHOW);
+        if(str[i] == 'c')
+            return (COLOR);
+    }
+    return(-1);
+}
+
 t_stack *check_affec(int ac, char **av, t_stack *a, t_stack **stack)
 {
     int index;
     char *str;
     char **tab;
+    int arg;
 
     index = 1;
     str = ft_strdup("\0");
+    arg = check_arg(av[1]);
+    if(arg != -1)
+        index++;
     while (av[index])
     {
         str = ft_strjoin(str, av[index]);

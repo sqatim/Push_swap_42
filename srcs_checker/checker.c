@@ -5,11 +5,12 @@ int main(int ac, char **av)
     t_stack *a;
     t_stack *b;
     t_stack *tmp;
+    int arg;
 
     a = NULL;
     b = NULL;
-    a = check_affec(ac, av, a);
-    read_instructions(&a, &b);
+    a = check_affec(ac, av, a, &arg);
+    read_instructions(&a, &b, arg);
     tmp = a;
     while (a->next)
     {

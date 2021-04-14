@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/13 22:44:57 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 17:17:33 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,24 @@
 #include <limits.h>
 #include "../libft/libft.h"
 
+#define GREEN "\033[0;32m"
+#define YELLOW "\033[0;33m"
+#define CYAN "\033[0;36m"
+#define RED "\033[0;31m"
+
+
 typedef struct s_pivot
 {
     int pivot;
     struct s_pivot *next;
     struct s_pivot *previous;
 } t_pivot;
+
+typedef enum e_argument
+{
+    COLOR,
+    SHOW
+} t_argument;
 
 typedef enum e_operation
 {
@@ -50,21 +62,24 @@ typedef struct s_tools
     int diff;
     int len;
     int count;
+    int if_true;
+    int max;
+    int min;
 } t_tools;
 
 
 /*================================  operation  ================================*/
-void logic1(t_stack **a);
-void logic2(t_stack **a, t_stack **b, int len);
-void logic3(t_stack **a, t_stack **b);
-void logic4(t_stack **a, t_stack **b, t_stack *stack, int len);
+void logic1(t_stack **a, int arg);
+void logic2(t_stack **a, t_stack **b, int len, int arg);
+void logic3(t_stack **a, t_stack **b, int arg);
+void logic4(t_stack **a, t_stack **b, t_stack *stack, int arg);
 t_stack *change_element(t_stack *a);
 /*================================  operation  ================================*/
 
-void swap(t_stack **stack, char *name);
-void reverse(t_stack **stack, char *name);
-void push(t_stack **first, t_stack **second, char *name);
-void reverse_reverse(t_stack **stack, char *name);
+void swap(t_stack **stack, char *name, int color);
+void reverse(t_stack **stack, char *name, int color);
+void push(t_stack **first, t_stack **second, char *name, int color);
+void reverse_reverse(t_stack **stack, char *name, int color);
 void rreverse_reverse(t_stack **a, t_stack **b, char *name);
 void rreverse(t_stack **a, t_stack **b, char *name);
 void sswap(t_stack **a, t_stack **b, char *name);
@@ -98,7 +113,7 @@ int calcul_for_reverse(t_stack *a);
 int count_to_number(t_stack *stack, int number);
 int count_len_stack(t_stack *stack);
 int count_len_pivot(t_pivot *pivot);
-void chose_operation(t_stack **stack, int numb, int if_true, char c);
+void chose_operation(t_stack **stack, t_tools tool, char c);
 t_tmp init_tmp(t_stack *a, t_stack *b);
 void chose_operation_a(t_tmp *tmp, int numb, int if_true);
 void chose_operation_b(t_tmp *tmp, int numb, int if_true);

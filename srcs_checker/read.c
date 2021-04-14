@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:36:43 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/14 00:53:47 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 15:52:01 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void instruction(char **buffer, t_stack **a, t_stack **b)
     // exit(1);
     // }
 }
-void read_instructions(t_stack **a, t_stack **b)
+void read_instructions(t_stack **a, t_stack **b, int arg)
 {
     char *buffer;
 
     while (get_next_line(0, &buffer))
     {
-        // buffer = (char *)ft_calloc(10, 1);
-        // read(0, buffer, 10);
+        if(arg == DEBUGGER)
+        system("clear");
         if (!(ft_strncmp(buffer, "\0", 1)))
         {
             free_string(&buffer);
@@ -64,7 +64,8 @@ void read_instructions(t_stack **a, t_stack **b)
             sswap(&(*a), &(*b));
         else
             instruction(&buffer, &(*a), &(*b));
-        // print(*a, *b);
+        if(arg == DEBUGGER)
+            print(*a, *b);
         free_string(&buffer);
     }
 }

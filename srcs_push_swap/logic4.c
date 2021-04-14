@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:45:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/13 17:37:21 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/14 17:17:46 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ static int	check_operation(t_stack *stack, int number)
 	return (check);
 }
 
-void	chose_operation(t_stack **stack, int number, int if_true, char c)
+void	chose_operation(t_stack **stack, t_tools tool, char c)
 {
 	static int	check;
 
-	if (if_true == 1)
-		check = check_operation(*stack, number);
+	if (tool.if_true == 1)
+		check = check_operation(*stack, tool.max);
 	if (check == REVERSE)
 	{
 		if (c == 'a')
@@ -62,26 +62,6 @@ void	chose_operation(t_stack **stack, int number, int if_true, char c)
 	}
 }
 
-t_pivot	*select_pivot(t_pivot *pivot, int number)
-{
-	t_pivot	*new;
-	t_pivot	*tmp;
-
-	new = (t_pivot *)malloc(sizeof(t_pivot));
-	if (!new)
-		return (NULL);
-	new->next = NULL;
-	new->previous = NULL;
-	new->pivot = number;
-	if (!pivot)
-		return (new);
-	tmp = pivot;
-	while (tmp->next)
-		tmp = tmp->next;
-	new->previous = tmp;
-	tmp->next = new;
-	return (pivot);
-}
 
 t_stack	*change_element(t_stack *a)
 {
@@ -178,37 +158,35 @@ static void	step_two(t_stack **a, t_stack **b)
 {
 	t_tmp	tmp;
 	t_stack	*tmp_a;
-	int		if_true;
-	int		max;
-	int		min;
+	t_tools tool;
 
-	if_true = 1;
+	tool.if_true = 1;
 	tmp = init_tmp(*a, *b);
-	min = minimum(tmp.a);
+	tool.min = minimum(tmp.a);
 	while (tmp.a)
 	{
 		tmp_a = tmp.a;
-		max = maximum(tmp.a);
+		tool.max = maximum(tmp.a);
 		while (tmp_a)
 		{
-			if (tmp_a->number <= max)
-				max = tmp_a->number;
+			if (tmp_a->number <= tool.max)
+				tool.max = tmp_a->number;
 			tmp_a = tmp_a->next;
 		}
-		if (tmp.a->number == max)
+		if (tmp.a->number == tool.max)
 		{
 			push(&tmp.b, &tmp.a, "pb");
-			if_true = 1;
+			tool.if_true = 1;
 		}
 		else
 		{
-			chose_operation(&tmp.a, max, if_true, 'a');
-			if_true = 0;
+			chose_operation(&tmp.a, tool, 'a');
+			tool.if_true = 0;
 		}
 	}
 	*b = tmp.b;
 	*a = tmp.a;
-	while ((*b)->number >= min)
+	while ((*b)->number >= tool.min)
 		push(&(*a), &(*b), "pa");
 }
 
@@ -216,11 +194,9 @@ static void	step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
 {
 	t_tmp	tmp;
 	t_stack	*tmp_b;
-	int		if_true;
-	int		max;
-	int		min;
+	t_tools tool;
 
-	if_true = 1;
+	tool.if_true = 1;
 	tmp = init_tmp(*a, *b);
 	while (pivot->next)
 		pivot = pivot->next;
@@ -229,29 +205,29 @@ static void	step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
 	{
 		tmp = init_tmp(*a, *b);
 		if (pivot)
-			min = pivot->pivot - 1;
+			tool.min = pivot->pivot - 1;
 		else
-			min = minimum(tmp.b);
-		while (tmp.a->number != min)
+			tool.min = minimum(tmp.b);
+		while (tmp.a->number != tool.min)
 		{
 			tmp_b = tmp.b;
-			max = maximum(tmp_b);
+			tool.max = maximum(tmp_b);
 			tmp_b = tmp.b;
 			while (tmp_b)
 			{
-				if (tmp_b->number == max && tmp_b->number >= min)
-					max = tmp_b->number;
+				if (tmp_b->number == tool.max && tmp_b->number >= tool.min)
+					tool.max = tmp_b->number;
 				tmp_b = tmp_b->next;
 			}
-			if (tmp.b->number == max)
+			if (tmp.b->number == tool.max)
 			{
 				push(&tmp.a, &tmp.b, "pa");
-				if_true = 1;
+				tool.if_true = 1;
 			}
 			else
 			{
-				chose_operation(&tmp.b, max, if_true, 'b');
-				if_true = 0;
+				chose_operation(&tmp.b, tool, 'b');
+				tool.if_true = 0;
 			}
 		}
 		if (pivot)
@@ -261,10 +237,12 @@ static void	step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
 	}
 }
 
-void	logic4(t_stack **a, t_stack **b, t_stack *stack, int len)
+void	logic4(t_stack **a, t_stack **b, t_stack *stack, int arg)
 {
 	t_pivot	*pivot;
+	int len;
 
+	len = count_len_stack(*a);
 	pivot = NULL;
 	pivot = step_zero(stack, len);
 	step_one(&(*a), &(*b), pivot);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/13 22:50:44 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 17:17:01 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,26 @@ int main(int ac, char **av)
     t_stack *a;
     t_stack *b;
     int len;
+    int arg;
 
     stack = NULL;
     a = NULL;
     b = NULL;
     a = check_affec(ac, av, a, &stack);
-
+    arg = check_arg(av[1]);
     if (!(check_tri(a, b)))
     {
         len = count_len_stack(a);
         if (len == 2)
-            swap(&a, "sa");
+            swap(&a, "sa", arg);
         else if (len == 3)
-            logic1(&a);
+            logic1(&a, arg);
         else if (len <= 5)
-            logic2(&a, &b, len);
+            logic2(&a, &b, len, arg);
         else if (len < 25)
-            logic3(&a, &b);
+            logic3(&a, &b, arg);
         else if (len >= 25)
-            logic4(&a, &b, stack, len);
+            logic4(&a, &b, stack, arg);
     }
-    // a = tmp;
-    // print(a, b);
-    // free_2_stack(&a, &b);
     return (0);
 }

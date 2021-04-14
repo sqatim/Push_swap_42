@@ -18,6 +18,11 @@
 #include "../libft/libft.h"
 #include "get_next_line.h"
 
+typedef enum e_argument
+{
+    DEBUGGER,
+} t_argument;
+
 typedef struct s_stack
 {
     int number;
@@ -43,11 +48,11 @@ t_stack *allocation(t_stack *stack_a, int nbr);
 /*================================  check  ================================*/
 
 void check_for_duplicates(t_stack *a);
-t_stack *check_affec(int ac, char **av, t_stack *a);
+t_stack *check_affec(int ac, char **av, t_stack *a, int *arg);
 
 /*================================  read  ================================*/
 
-void read_instructions(t_stack **a, t_stack **b);
+void read_instructions(t_stack **a, t_stack **b, int arg);
 
 /*================================  free  ================================*/
 
