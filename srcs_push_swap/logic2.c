@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:27:05 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/14 14:21:19 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/14 22:21:11 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 **
 */
 
-static void	push_less_pivot(t_stack **a, t_stack **b, int len)
+static void push_less_pivot(t_stack **a, t_stack **b, int len, int arg)
 {
-	int		min;
-	int		count;
-	int		i;
-	int		number;
+	int min;
+	int count;
+	int i;
+	int number;
 
 	i = 0;
 	number = 1;
@@ -35,27 +35,27 @@ static void	push_less_pivot(t_stack **a, t_stack **b, int len)
 		if (count <= len / number)
 		{
 			while ((*a)->number != min)
-				reverse(&(*a), "ra");
-			push(&(*b), &(*a), "pb");
+				reverse(&(*a), *b, "ra", arg);
+			push(&(*b), &(*a), "pb", arg);
 			i++;
 		}
 		else if (count > len / number)
 		{
 			while ((*a)->number != min)
-				reverse_reverse(&(*a), "rra");
-			push(&(*b), &(*a), "pb");
+				reverse_reverse(&(*a), *b, "rra", arg);
+			push(&(*b), &(*a), "pb", arg);
 			i++;
 		}
 	}
 }
 
-void	logic2(t_stack **a, t_stack **b, int len)
+void logic2(t_stack **a, t_stack **b, int len, int arg)
 {
-	push_less_pivot(&(*a), &(*b), len);
+	push_less_pivot(&(*a), &(*b), len, arg);
 	if ((*b)->next && (*b)->number < (*b)->next->number)
-		swap(&(*b), "sb");
-	logic1(&(*a));
-	push(&(*a), &(*b), "pa");
-	if(len == 5)
-	push(&(*a), &(*b), "pa");
+		swap(&(*b), *a, "sb", arg);
+	logic1(&(*a), *b, arg);
+	push(&(*a), &(*b), "pa", arg);
+	if (len == 5)
+		push(&(*a), &(*b), "pa", arg);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/13 17:05:10 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/14 22:31:27 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,27 @@
 **  step two    :   I push all element to stack 'A'
 */
 
-void	chose_operation1(t_stack **stack, int numb, int if_true)
+void	chose_operation1(t_stack **stack1, t_stack *stack2, int numb, t_tools tool)
 {
 	t_stack		*tmp;
-	t_tools		tool;
 	static int	check;
 
-	if (if_true == 1)
+	if (tool.if_true == 1)
 	{
-		tmp = *stack;
+		tmp = *stack1;
 		tool.len = count_len_stack(tmp);
 		tool.med = tool.len / 2;
 		if (tool.len % 2 != 0)
 			tool.med++;
-		tmp = *stack;
+		tmp = *stack1;
 		tool.count = count_to_number(tmp, numb);
 		tool.diff = tool.count - tool.med;
 		check = which_operation(tool.diff);
 	}
 	if (check == REVERSE)
-		reverse(&(*stack), "ra");
+		reverse(&(*stack1), stack2, "ra", tool.arg);
 	else if (check == REVERSE_REVERSE)
-		reverse_reverse(&(*stack), "rra");
+		reverse_reverse(&(*stack1), stack2, "rra", tool.arg);
 }
 
 int	select_number(t_stack *a, int pivot)
@@ -57,47 +56,47 @@ int	select_number(t_stack *a, int pivot)
 	return (number);
 }
 
-void	push_or_operation(t_stack **a, t_stack **b, int pivot, int *if_true)
+void	push_or_operation(t_stack **a, t_stack **b, t_tools *tool, int arg)
 {
 	int	number;
 
-	number = select_number(*a, pivot);
-	if ((*a)->number <= pivot && (*a)->number == number)
+	tool->arg = arg;
+	number = select_number(*a, tool->pivot);
+	if ((*a)->number <= tool->pivot && (*a)->number == number)
 	{
-		push(&(*b), &(*a), "pb");
-		*if_true = 1;
+		push(&(*b), &(*a), "pb", arg);
+		tool->if_true = 1;
 	}
 	else
 	{
-		chose_operation1(&(*a), number, *if_true);
-		*if_true = 0;
+		chose_operation1(&(*a), *b ,number, *tool);
+		tool->if_true = 0;
 	}
 }
 
-void	step_one(t_stack **a, t_stack **b)
+void	step_one(t_stack **a, t_stack **b, int arg)
 {
 	t_stack	*tmp_a;
-	int		if_true;
-	int		pivot;
+	t_tools tool;
 	int		calcul;
 
-	if_true = 1;
+	tool.if_true = 1;
 	while (*a)
 	{
 		tmp_a = *a;
-		pivot = search_for_pivot(tmp_a, &calcul);
+		tool.pivot = search_for_pivot(tmp_a, &calcul);
 		while (*a)
 		{
-			push_or_operation(&(*a), &(*b), pivot, &if_true);
-			if (*b && (*b)->number == pivot)
+			push_or_operation(&(*a), &(*b), &tool, arg);
+			if (*b && (*b)->number == tool.pivot)
 				break ;
 		}
 	}
 }
 
-void	logic3(t_stack **a, t_stack **b)
+void	logic3(t_stack **a, t_stack **b, int arg)
 {
-	step_one(&(*a), &(*b));
+	step_one(&(*a), &(*b), arg);
 	while (*b)
-		push(&(*a), &(*b), "pa");
+		push(&(*a), &(*b), "pa", arg);
 }

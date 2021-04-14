@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/14 17:17:33 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/14 23:30:55 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 #define YELLOW "\033[0;33m"
 #define CYAN "\033[0;36m"
 #define RED "\033[0;31m"
-
 
 typedef struct s_pivot
 {
@@ -62,24 +61,25 @@ typedef struct s_tools
     int diff;
     int len;
     int count;
+    int pivot;
     int if_true;
+    int arg;
     int max;
     int min;
 } t_tools;
 
-
 /*================================  operation  ================================*/
-void logic1(t_stack **a, int arg);
+void logic1(t_stack **a, t_stack *b, int arg);
 void logic2(t_stack **a, t_stack **b, int len, int arg);
 void logic3(t_stack **a, t_stack **b, int arg);
 void logic4(t_stack **a, t_stack **b, t_stack *stack, int arg);
 t_stack *change_element(t_stack *a);
 /*================================  operation  ================================*/
 
-void swap(t_stack **stack, char *name, int color);
-void reverse(t_stack **stack, char *name, int color);
+void swap(t_stack **stack1, t_stack *stack2, char *name, int color);
+void reverse(t_stack **stack1, t_stack *stack2, char *name, int color);
 void push(t_stack **first, t_stack **second, char *name, int color);
-void reverse_reverse(t_stack **stack, char *name, int color);
+void reverse_reverse(t_stack **stack1, t_stack *stack2, char *name, int color);
 void rreverse_reverse(t_stack **a, t_stack **b, char *name);
 void rreverse(t_stack **a, t_stack **b, char *name);
 void sswap(t_stack **a, t_stack **b, char *name);
@@ -88,10 +88,11 @@ void sswap(t_stack **a, t_stack **b, char *name);
 
 t_stack *create_node(int number);
 t_stack *allocation(t_stack *stack_a, int nbr);
+t_pivot *select_pivot(t_pivot *pivot, int number);
 
 /*================================  check  ================================*/
 
-void check_for_duplicates(t_stack *a);
+void check_for_duplicates(t_stack *a, t_stack *stack);
 t_stack *check_affec(int ac, char **av, t_stack *a, t_stack **stack);
 // t_stack *check_affec(int ac, char **av, t_stack *a);
 int check_tri(t_stack *a, t_stack *b);
@@ -113,21 +114,24 @@ int calcul_for_reverse(t_stack *a);
 int count_to_number(t_stack *stack, int number);
 int count_len_stack(t_stack *stack);
 int count_len_pivot(t_pivot *pivot);
-void chose_operation(t_stack **stack, t_tools tool, char c);
+void chose_operation(t_stack **stack1, t_stack *stack2, t_tools tool, char c);
 t_tmp init_tmp(t_stack *a, t_stack *b);
 void chose_operation_a(t_tmp *tmp, int numb, int if_true);
 void chose_operation_b(t_tmp *tmp, int numb, int if_true);
 int which_operation(int diff);
 int minimum(t_stack *stack);
 int maximum(t_stack *stack);
-char			**ft_space_split(char const *s);
-long long			ft_atol(const char *str);
+char **ft_space_split(char const *s);
+long long ft_atol(const char *str);
+int check_arg(char *str);
 
 /*================================  free  ================================*/
 
 void free_string(char **str);
 void free_stack(t_stack **stack);
 void free_2_stack(t_stack **a, t_stack **b);
+void free_tab(char ***tab);
+void free_pivot(t_pivot **pivot);
 
 /*================================  print  ================================*/
 

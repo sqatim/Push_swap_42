@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:45:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/14 17:17:46 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/14 23:22:58 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
  					 	sort stack 'B' and push to 'A'
  */
 
-static int	check_operation(t_stack *stack, int number)
+static int check_operation(t_stack *stack, int number)
 {
-	t_stack	*tmp;
-	int		check;
-	t_tools	tool;
+	t_stack *tmp;
+	int check;
+	t_tools tool;
 
 	tmp = stack;
 	tool.len = count_len_stack(tmp);
@@ -40,34 +40,33 @@ static int	check_operation(t_stack *stack, int number)
 	return (check);
 }
 
-void	chose_operation(t_stack **stack, t_tools tool, char c)
+void chose_operation(t_stack **stack1, t_stack *stack2, t_tools tool, char c)
 {
-	static int	check;
+	static int check;
 
 	if (tool.if_true == 1)
-		check = check_operation(*stack, tool.max);
+		check = check_operation(*stack1, tool.max);
 	if (check == REVERSE)
 	{
 		if (c == 'a')
-			reverse(&(*stack), "ra");
+			reverse(&(*stack1), stack2, "ra", tool.arg);
 		else
-			reverse(&(*stack), "rb");
+			reverse(&(*stack1), stack2, "rb", tool.arg);
 	}
 	else if (check == REVERSE_REVERSE)
 	{
 		if (c == 'a')
-			reverse_reverse(&(*stack), "rra");
+			reverse_reverse(&(*stack1), stack2, "rra", tool.arg);
 		else
-			reverse_reverse(&(*stack), "rrb");
+			reverse_reverse(&(*stack1), stack2, "rrb", tool.arg);
 	}
 }
 
-
-t_stack	*change_element(t_stack *a)
+t_stack *change_element(t_stack *a)
 {
-	t_stack	*tmp;
-	t_stack	*change;
-	int		number;
+	t_stack *tmp;
+	t_stack *change;
+	int number;
 
 	tmp = a;
 	while (tmp)
@@ -88,7 +87,7 @@ t_stack	*change_element(t_stack *a)
 	return (a);
 }
 
-int	select_denominator(int len)
+int select_denominator(int len)
 {
 	if (len >= 25 && len < 50)
 		return (3);
@@ -98,13 +97,13 @@ int	select_denominator(int len)
 		return (12);
 }
 
-static t_pivot	*step_zero(t_stack *a, int len)
+static t_pivot *step_zero(t_stack *a, int len)
 {
-	t_stack	*tmp;
-	t_pivot	*pivot;
-	int		counter;
-	int		i;
-	int		denominator;
+	t_stack *tmp;
+	t_pivot *pivot;
+	int counter;
+	int i;
+	int denominator;
 
 	counter = 0;
 	i = 1;
@@ -124,12 +123,12 @@ static t_pivot	*step_zero(t_stack *a, int len)
 	return (pivot);
 }
 
-static void	step_one(t_stack **a, t_stack **b, t_pivot *pivot)
+static void step_one(t_stack **a, t_stack **b, t_pivot *pivot, int arg)
 {
-	t_tmp	tmp;
-	int		counter;
-	int		index;
-	int		len;
+	t_tmp tmp;
+	int counter;
+	int index;
+	int len;
 
 	index = 0;
 	counter = minimum(*a);
@@ -141,11 +140,11 @@ static void	step_one(t_stack **a, t_stack **b, t_pivot *pivot)
 		{
 			if (tmp.a->number <= pivot->pivot)
 			{
-				push(&tmp.b, &tmp.a, "pb");
+				push(&tmp.b, &tmp.a, "pb", arg);
 				counter++;
 			}
 			else
-				reverse(&tmp.a, "ra");
+				reverse(&tmp.a, tmp.b, "ra", arg);
 		}
 		pivot = pivot->next;
 		index++;
@@ -154,13 +153,14 @@ static void	step_one(t_stack **a, t_stack **b, t_pivot *pivot)
 	}
 }
 
-static void	step_two(t_stack **a, t_stack **b)
+static void step_two(t_stack **a, t_stack **b, int arg)
 {
-	t_tmp	tmp;
-	t_stack	*tmp_a;
+	t_tmp tmp;
+	t_stack *tmp_a;
 	t_tools tool;
 
 	tool.if_true = 1;
+	tool.arg = arg;
 	tmp = init_tmp(*a, *b);
 	tool.min = minimum(tmp.a);
 	while (tmp.a)
@@ -175,28 +175,29 @@ static void	step_two(t_stack **a, t_stack **b)
 		}
 		if (tmp.a->number == tool.max)
 		{
-			push(&tmp.b, &tmp.a, "pb");
+			push(&tmp.b, &tmp.a, "pb", arg);
 			tool.if_true = 1;
 		}
 		else
 		{
-			chose_operation(&tmp.a, tool, 'a');
+			chose_operation(&tmp.a, tmp.b, tool, 'a');
 			tool.if_true = 0;
 		}
 	}
 	*b = tmp.b;
 	*a = tmp.a;
 	while ((*b)->number >= tool.min)
-		push(&(*a), &(*b), "pa");
+		push(&(*a), &(*b), "pa", arg);
 }
 
-static void	step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
+static void step_tree(t_stack **a, t_stack **b, t_pivot *pivot, int arg)
 {
-	t_tmp	tmp;
-	t_stack	*tmp_b;
+	t_tmp tmp;
+	t_stack *tmp_b;
 	t_tools tool;
 
 	tool.if_true = 1;
+	tool.arg = arg;
 	tmp = init_tmp(*a, *b);
 	while (pivot->next)
 		pivot = pivot->next;
@@ -221,12 +222,12 @@ static void	step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
 			}
 			if (tmp.b->number == tool.max)
 			{
-				push(&tmp.a, &tmp.b, "pa");
+				push(&tmp.a, &tmp.b, "pa", arg);
 				tool.if_true = 1;
 			}
 			else
 			{
-				chose_operation(&tmp.b, tool, 'b');
+				chose_operation(&tmp.b, tmp.a, tool, 'b');
 				tool.if_true = 0;
 			}
 		}
@@ -237,15 +238,16 @@ static void	step_tree(t_stack **a, t_stack **b, t_pivot *pivot)
 	}
 }
 
-void	logic4(t_stack **a, t_stack **b, t_stack *stack, int arg)
+void logic4(t_stack **a, t_stack **b, t_stack *stack, int arg)
 {
-	t_pivot	*pivot;
+	t_pivot *pivot;
 	int len;
 
 	len = count_len_stack(*a);
 	pivot = NULL;
 	pivot = step_zero(stack, len);
-	step_one(&(*a), &(*b), pivot);
-	step_two(&(*a), &(*b));
-	step_tree(&(*a), &(*b), pivot);
+	step_one(&(*a), &(*b), pivot, arg);
+	step_two(&(*a), &(*b), arg);
+	step_tree(&(*a), &(*b), pivot, arg);
+	free_pivot(&pivot);
 }
