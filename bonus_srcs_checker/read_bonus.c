@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read.c                                             :+:      :+:    :+:   */
+/*   read_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:36:43 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/14 00:53:47 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 00:18:53 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "checker_bonus.h"
 
 void instruction(char **buffer, t_stack **a, t_stack **b)
 {
@@ -31,11 +31,11 @@ void instruction(char **buffer, t_stack **a, t_stack **b)
     else if (!(ft_strncmp(*buffer, "rrr\0", 4)))
         rreverse_reverse(&(*a), &(*b));
     else
-        // {
-        //     free_string(&(*buffer));
-        //     free_2_stack(&(*a), &(*b));
+    // {
+    //     free_string(&(*buffer));
+    //     free_2_stack(&(*a), &(*b));
         ft_putendl_fd("Error", 2);
-    // exit(1);
+        // exit(1);
     // }
 }
 void read_instructions(t_stack **a, t_stack **b)
@@ -46,6 +46,7 @@ void read_instructions(t_stack **a, t_stack **b)
     {
         // buffer = (char *)ft_calloc(10, 1);
         // read(0, buffer, 10);
+
         if (!(ft_strncmp(buffer, "\0", 1)))
         {
             free_string(&buffer);

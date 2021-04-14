@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_affectation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/13 13:45:57 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/13 22:56:01 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ int check_if_int(char *str)
             return (0);
         i++;
     }
+    if (ft_atol(str) > 2147483647 || ft_atol(str) < -2147483648)
+        return (0);
     return (1);
 }
-int check_for_errors(char **av)
+int check_for_errors(char **tab)
 {
     int index;
-    
-    index = 1;
-    while (av[index])
+
+    index = 0;
+    while (tab[index])
     {
-        if (!(check_if_int(av[index])))
+        if (!(check_if_int(tab[index])))
         {
             ft_putendl_fd("Error", 2);
             return (0);
@@ -69,12 +71,10 @@ void check_for_duplicates(t_stack *a)
 
 t_stack *check_affec(int ac, char **av, t_stack *a)
 {
-    int count;
     int index;
     char *str;
     char **tab;
 
-    count = 2;
     index = 1;
     str = ft_strdup("\0");
     while (av[index])

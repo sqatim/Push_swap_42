@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation.c                                        :+:      :+:    :+:   */
+/*   operation_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 20:34:44 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/13 22:50:58 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 00:18:38 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-void swap(t_stack **stack, char *name)
+void swap(t_stack **stack)
 {
     t_stack *tmp;
 
@@ -27,21 +27,18 @@ void swap(t_stack **stack, char *name)
                 tmp->next->previous = tmp;
             (*stack)->previous = NULL;
             (*stack)->next = tmp;
-            if (name)
-                ft_putendl_fd(name, 1);
         }
         else
             ft_putendl_fd("you need at least 2 number in the stack", 1);
     }
 }
 
-void sswap(t_stack **a, t_stack **b, char *name)
+void sswap(t_stack **a, t_stack **b)
 {
-    swap(&(*a), NULL);
-    swap(&(*b), NULL);
-    ft_putendl_fd(name, 1);
+    swap(&(*a));
+    swap(&(*b));
 }
-void reverse(t_stack **stack, char *name)
+void reverse(t_stack **stack)
 {
     t_stack *tmp;
     t_stack *last;
@@ -61,22 +58,19 @@ void reverse(t_stack **stack, char *name)
             tmp->next = NULL;
             tmp->previous = last;
             last->next = tmp;
-            if (name)
-                ft_putendl_fd(name, 1);
         }
         else
             ft_putendl_fd("you need at least 2 number in the stack", 1);
     }
 }
 
-void rreverse(t_stack **a, t_stack **b, char *name)
+void rreverse(t_stack **a, t_stack **b)
 {
-    reverse(&(*a), NULL);
-    reverse(&(*b), NULL);
-    ft_putendl_fd(name, 1);
+    reverse(&(*a));
+    reverse(&(*b));
 }
 
-void push(t_stack **first, t_stack **second, char *name)
+void push(t_stack **first, t_stack **second)
 {
     t_stack *new;
     t_stack *tmp;
@@ -99,12 +93,10 @@ void push(t_stack **first, t_stack **second, char *name)
         *second = NULL;
         if (tmp)
             *second = tmp;
-        if (name)
-            ft_putendl_fd(name, 1);
     }
 }
 
-void reverse_reverse(t_stack **stack, char *name)
+void reverse_reverse(t_stack **stack)
 {
     t_stack *tmp;
 
@@ -122,18 +114,14 @@ void reverse_reverse(t_stack **stack, char *name)
             tmp->previous->next = NULL;
             tmp->previous = NULL;
             *stack = tmp;
-            if (name)
-                ft_putendl_fd(name, 1);
         }
         else
             ft_putendl_fd("you need at least 2 number in the stack", 1);
     }
 }
 
-void rreverse_reverse(t_stack **a, t_stack **b, char *name)
+void rreverse_reverse(t_stack **a, t_stack **b)
 {
-    reverse_reverse(&(*a), NULL);
-    reverse_reverse(&(*b), NULL);
-    if (name)
-        ft_putendl_fd(name, 1);
+    reverse_reverse(&(*a));
+    reverse_reverse(&(*b));
 }

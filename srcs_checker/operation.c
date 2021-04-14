@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 20:34:44 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/03/29 16:25:13 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/13 22:49:22 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void swap(t_stack **stack)
 {
     t_stack *tmp;
-    t_stack *test;
 
     if (*stack)
     {
@@ -28,7 +27,6 @@ void swap(t_stack **stack)
                 tmp->next->previous = tmp;
             (*stack)->previous = NULL;
             (*stack)->next = tmp;
-            test = *stack;
         }
         else
             ft_putendl_fd("you need at least 2 number in the stack", 1);

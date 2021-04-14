@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-#define CHECKER_H
+#ifndef CHECKER_BONUS_H
+#define CHECKER_BONUS_H
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "../libft/libft.h"
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 typedef struct s_stack
 {
@@ -57,8 +57,8 @@ void free_2_stack(t_stack **a, t_stack **b);
 
 /*================================  tools  ================================*/
 
-char			**ft_space_split(char const *s);
-long long			ft_atol(const char *str);
+char **ft_space_split(char const *s);
+long long ft_atol(const char *str);
 
 /*================================  print  ================================*/
 

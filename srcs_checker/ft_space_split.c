@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_space_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 11:15:11 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/13 11:26:58 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/13 22:50:21 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,10 @@ static char		*alloc(char **tab, char *src)
 
 char			**ft_space_split(char const *s)
 {
-	int			i;
 	int			j;
-	int			o;
 	char		**tab;
 	char		*str;
 
-	o = 0;
-	i = 0;
 	j = 0;
 	if (!s)
 		return (NULL);

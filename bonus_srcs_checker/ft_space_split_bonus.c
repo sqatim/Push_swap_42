@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_space_split.c                                   :+:      :+:    :+:   */
+/*   ft_space_split_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 11:15:11 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/13 22:51:34 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 00:18:08 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
 static int		words(char *str)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_affectation.c                                :+:      :+:    :+:   */
+/*   check_affectation_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/13 22:55:26 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/14 00:17:37 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
 int check_if_int(char *str)
 {
@@ -29,7 +29,6 @@ int check_if_int(char *str)
         return (0);
     return (1);
 }
-
 int check_for_errors(char **tab)
 {
     int index;
@@ -70,7 +69,7 @@ void check_for_duplicates(t_stack *a)
     }
 }
 
-t_stack *check_affec(int ac, char **av, t_stack *a, t_stack **stack)
+t_stack *check_affec(int ac, char **av, t_stack *a)
 {
     int index;
     char *str;
@@ -93,7 +92,6 @@ t_stack *check_affec(int ac, char **av, t_stack *a, t_stack **stack)
         while (tab[index])
         {
             a = allocation(a, ft_atoi(tab[index]));
-            *stack = allocation(*stack, ft_atoi(tab[index]));
             index++;
         }
     }
