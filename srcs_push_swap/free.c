@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:41:36 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/14 23:22:21 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/15 15:37:45 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void free_string(char **str)
+void	free_string(char **str)
 {
 	if (*str)
 	{
@@ -21,9 +21,9 @@ void free_string(char **str)
 	}
 }
 
-void free_stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	while (*stack)
 	{
@@ -34,7 +34,7 @@ void free_stack(t_stack **stack)
 	}
 }
 
-void free_2_stack(t_stack **a, t_stack **b)
+void	free_2_stack(t_stack **a, t_stack **b)
 {
 	if (*a)
 		free_stack(&(*a));
@@ -44,7 +44,7 @@ void free_2_stack(t_stack **a, t_stack **b)
 
 void	free_tab(char ***tab)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	if (*tab != NULL && *tab[index] != NULL)
@@ -60,9 +60,9 @@ void	free_tab(char ***tab)
 	}
 }
 
-void free_pivot(t_pivot **pivot)
+void	free_pivot(t_pivot **pivot)
 {
-	t_pivot *tmp;
+	t_pivot	*tmp;
 
 	while (*pivot)
 	{

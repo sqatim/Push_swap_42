@@ -6,13 +6,13 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 19:07:46 by sqatim            #+#    #+#             */
-/*   Updated: 2020/01/02 22:42:48 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/15 15:33:55 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		free_leak(char **ptr, int nb, int fd)
+int	free_leak(char **ptr, int nb, int fd)
 {
 	if (fd >= 0 && fd < FD_SIZE)
 	{
@@ -35,7 +35,7 @@ char	*ft_check(char **tmp, int r, int fd)
 	}
 }
 
-int		ft_remplissage(char **tmp, int fd, char **line)
+int	ft_remplissage(char **tmp, int fd, char **line)
 {
 	int		r;
 	char	*delt;
@@ -55,22 +55,26 @@ int		ft_remplissage(char **tmp, int fd, char **line)
 	return (1);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
-	char		*buf;
+	char		*buffer;
 	static char	*tmp[2];
 	int			r;
 
-	if ((fd < 0 || fd >= FD_SIZE) || !line || BUFFER_SIZE <= 0 ||
-			!(buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1)))
+	if ((fd < 0 || fd >= FD_SIZE) || !line || BUFFER_SIZE <= 0)
 		return (free_leak(&tmp[1], -1, 1));
-	while ((!(ft_strchr(tmp[1], '\n'))) &&
-			((r = read(fd, buf, BUFFER_SIZE)) > 0))
+	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
+		return (free_leak(&tmp[1], -1, 1));
+	while (!(ft_strchr(tmp[1], '\n')))
 	{
-		buf[r] = '\0';
-		tmp[1] = ft_strjoin_free(tmp[1], buf);
+		r = read(fd, buffer, BUFFER_SIZE);
+		if (r <= 0)
+			break ;
+		buffer[r] = '\0';
+		tmp[1] = ft_strjoin_free(tmp[1], buffer);
 	}
-	free(buf);
+	free(buffer);
 	if (r == -1 || (r == 0 && !ft_strlen(tmp[1])))
 	{
 		*line = ft_strdup("");

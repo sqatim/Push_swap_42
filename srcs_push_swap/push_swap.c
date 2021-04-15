@@ -3,105 +3,107 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/14 23:18:10 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/15 16:38:40 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_tri(t_stack *a, t_stack *b)
+int	check_tri(t_stack *a, t_stack *b)
 {
-    while (a && a->next)
-    {
-        if (a->number > a->next->number || b)
-            return (0);
-        a = a->next;
-    }
-    // if (b)
-    //     return (0);
-    return (1);
+	while (a && a->next)
+	{
+		if (a->number > a->next->number || b)
+			return (0);
+		a = a->next;
+	}
+	if (b)
+		return (0);
+	return (1);
 }
 
-int pivot_approx(t_stack *a, int pivot)
+int	pivot_approx(t_stack *a, int pivot)
 {
-    int number;
+	int	number;
 
-    number = INT_MAX;
-    while (a)
-    {
-        if (a->number == pivot)
-            return (pivot);
-        if (abs(a->number - pivot) < number)
-            number = a->number;
-        a = a->next;
-    }
-    return (number);
-}
-int search_for_pivot(t_stack *a, int *calcul)
-{
-    int pivot;
-    int counter;
-    t_stack *tmp;
-
-    counter = 0;
-    pivot = 0;
-    tmp = a;
-    while (a)
-    {
-        pivot += a->number;
-        a = a->next;
-        counter++;
-    }
-    a = tmp;
-    *calcul = counter;
-    pivot /= counter;
-    pivot = pivot_approx(a, pivot);
-    return (pivot);
-}
-int calcul_for_reverse(t_stack *a)
-{
-    int counter;
-
-    counter = 0;
-    while (a)
-    {
-        counter++;
-        a = a->next;
-    }
-    return (counter);
+	number = INT_MAX;
+	while (a)
+	{
+		if (a->number == pivot)
+			return (pivot);
+		if (abs(a->number - pivot) < number)
+			number = a->number;
+		a = a->next;
+	}
+	return (number);
 }
 
-int main(int ac, char **av)
+int	search_for_pivot(t_stack *a, int *calcul)
 {
-    t_stack *stack;
-    t_stack *a;
-    t_stack *b;
-    int len;
-    int arg;
+	int		pivot;
+	int		counter;
+	t_stack	*tmp;
 
-    stack = NULL;
-    a = NULL;
-    b = NULL;
-    a = check_affec(ac, av, a, &stack);
-    arg = check_arg(av[1]);
-    if (!(check_tri(a, b)))
-    {
-        len = count_len_stack(a);
-        if (len == 2)
-            swap(&a, b, "sa", arg);
-        else if (len == 3)
-            logic1(&a, b, arg);
-        else if (len <= 5)
-            logic2(&a, &b, len, arg);
-        else if (len < 25)
-            logic3(&a, &b, arg);
-        else if (len >= 25)
-            logic4(&a, &b, stack, arg);
-    }
-    free_stack(&stack);
-    free_stack(&a);
-    return (0);
+	counter = 0;
+	pivot = 0;
+	tmp = a;
+	while (a)
+	{
+		pivot += a->number;
+		a = a->next;
+		counter++;
+	}
+	a = tmp;
+	*calcul = counter;
+	pivot /= counter;
+	pivot = pivot_approx(a, pivot);
+	return (pivot);
+}
+
+int	calcul_for_reverse(t_stack *a)
+{
+	int	counter;
+
+	counter = 0;
+	while (a)
+	{
+		counter++;
+		a = a->next;
+	}
+	return (counter);
+}
+
+int	main(int ac, char **av)
+{
+	t_stack	*stack;
+	t_stack	*a;
+	t_stack	*b;
+	int		len;
+	int		arg;
+
+	stack = NULL;
+	a = NULL;
+	b = NULL;
+	a = check_affec(ac, av, a, &stack);
+	arg = check_arg(av[1]);
+	if (!(check_tri(a, b)))
+	{
+		len = count_len_stack(a);
+		if (len == 2)
+			swap(&a, b, "sa", arg);
+		else if (len == 3)
+			logic1(&a, b, arg);
+		else if (len <= 5)
+			logic2(&a, &b, len, arg);
+		else if (len < 25)
+			logic3(&a, &b, arg);
+		else if (len >= 25)
+			logic4(&a, &b, stack, arg);
+	}
+	free_stack(&stack);
+	free_stack(&a);
+	return (0);
 }

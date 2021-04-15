@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 19:09:38 by sqatim            #+#    #+#             */
-/*   Updated: 2020/01/01 22:29:48 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/15 14:29:48 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ char	*ft_strjoin_free(char *s1, char const *s2)
 		return (ft_strdup(s2));
 	if (s1 && s2)
 	{
-		if (!(p = (char *)malloc(sizeof(char) * (ft_strlen(s1)
-							+ ft_strlen(s2) + 1))))
+		p = (char *)malloc(sizeof(char) * (ft_strlen(s1) \
+			+ ft_strlen(s2) + 1));
+		if (!p)
 			return (NULL);
 		while (s1[j])
 			p[i++] = s1[j++];

@@ -16,7 +16,9 @@ LIB_PATH= libft
 SRC_CHECKER_NAME=checker.c\
 			allocation.c\
 			operation.c\
+			operation1.c\
 			check_affectation.c\
+			check_affectation1.c\
 			get_next_line.c\
 			get_next_line_utils.c\
 			print.c\
@@ -28,6 +30,7 @@ SRC_CHECKER_NAME=checker.c\
 SRC_PUSH_SWAP_NAME=push_swap.c\
 			allocation.c\
 			operation.c\
+			operation1.c\
 			check_affectation.c\
 			free.c\
 			print.c\
@@ -36,6 +39,7 @@ SRC_PUSH_SWAP_NAME=push_swap.c\
 			logic3.c\
 			logic4.c\
 			tools.c\
+			tools1.c\
 			ft_space_split.c\
 			ft_atol.c\
 

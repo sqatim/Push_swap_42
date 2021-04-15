@@ -32,13 +32,13 @@ typedef struct s_stack
 
 /*================================  operation  ================================*/
 
-void swap(t_stack **stack);
-void reverse(t_stack **stack);
-void push(t_stack **first, t_stack **second);
-void reverse_reverse(t_stack **stack);
-void rreverse_reverse(t_stack **a, t_stack **b);
-void rreverse(t_stack **a, t_stack **b);
-void sswap(t_stack **a, t_stack **b);
+void swap(t_stack **stack, int arg);
+void reverse(t_stack **stack, int arg);
+void push(t_stack **first, t_stack **second, int arg);
+void reverse_reverse(t_stack **stack, int arg);
+void rreverse_reverse(t_stack **a, t_stack **b, int arg);
+void rreverse(t_stack **a, t_stack **b, int arg);
+void sswap(t_stack **a, t_stack **b, int arg);
 
 /*================================  allocation  ================================*/
 
@@ -49,6 +49,7 @@ t_stack *allocation(t_stack *stack_a, int nbr);
 
 void check_for_duplicates(t_stack *a);
 t_stack *check_affec(int ac, char **av, t_stack *a, int *arg);
+int	check_if_int(char *str);
 
 /*================================  read  ================================*/
 
@@ -59,6 +60,7 @@ void read_instructions(t_stack **a, t_stack **b, int arg);
 void free_string(char **str);
 void free_stack(t_stack **stack);
 void free_2_stack(t_stack **a, t_stack **b);
+void	free_tab(char ***tab);
 
 /*================================  tools  ================================*/
 

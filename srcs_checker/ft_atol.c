@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 03:40:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/13 22:44:18 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/15 14:24:26 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-long long			ft_atol(const char *str)
+long long	ft_atol(const char *str)
 {
-	int i;
-	int sign;
-	long long result;
+	int			i;
+	int			sign;
+	long long	result;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	while (str[i] == ' ' || str[i] == '\r' || str[i] == '\f' || str[i] == '\n'
+	while (str[i] == ' ' || str[i] == '\r' || str[i] == '\f' || str[i] == '\n'\
 			|| str[i] == '\v' || str[i] == '\t')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
