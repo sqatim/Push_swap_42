@@ -32,12 +32,14 @@ SRC_PUSH_SWAP_NAME=push_swap.c\
 			operation.c\
 			operation1.c\
 			check_affectation.c\
+			check_affectation1.c\
 			free.c\
 			print.c\
 			logic1.c\
 			logic2.c\
 			logic3.c\
 			logic4.c\
+			logic4_ext.c\
 			tools.c\
 			tools1.c\
 			ft_space_split.c\

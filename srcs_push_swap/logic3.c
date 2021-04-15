@@ -6,18 +6,20 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/14 22:31:27 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/15 22:49:41 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* 
-**  step one    :   I push from the smallest to the largest from stack 'A' To 'B'
+/*
+**  step one    :   I push from the smallest to the largest \
+**					from stack 'A' To 'B'
 **  step two    :   I push all element to stack 'A'
 */
 
-void	chose_operation1(t_stack **stack1, t_stack *stack2, int numb, t_tools tool)
+void	chose_operation1(t_stack **stack1, t_stack *stack2, \
+							int numb, t_tools tool)
 {
 	t_stack		*tmp;
 	static int	check;
@@ -69,7 +71,7 @@ void	push_or_operation(t_stack **a, t_stack **b, t_tools *tool, int arg)
 	}
 	else
 	{
-		chose_operation1(&(*a), *b ,number, *tool);
+		chose_operation1(&(*a), *b, number, *tool);
 		tool->if_true = 0;
 	}
 }

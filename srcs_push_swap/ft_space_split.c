@@ -6,13 +6,13 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 11:15:11 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/13 22:51:34 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/15 23:21:44 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int		words(char *str)
+static int	words(char *str)
 {
 	int			i;
 	int			j;
@@ -34,7 +34,7 @@ static int		words(char *str)
 	return (j);
 }
 
-static void		*leak(char **spl, int j)
+static void	*leak(char **spl, int j)
 {
 	j = j - 1;
 	while (spl[j])
@@ -46,7 +46,7 @@ static void		*leak(char **spl, int j)
 	return (NULL);
 }
 
-static int		carcts(char *str)
+static int	carcts(char *str)
 {
 	int			i;
 
@@ -58,7 +58,7 @@ static int		carcts(char *str)
 	return (i);
 }
 
-static char		*alloc(char **tab, char *src)
+static char	*alloc(char **tab, char *src)
 {
 	int			i;
 	int			j;
@@ -71,7 +71,8 @@ static char		*alloc(char **tab, char *src)
 	while (j < words(src))
 	{
 		i = 0;
-		if (!(tab[j] = malloc(sizeof(char) * (carcts(&src[o]) + 1))))
+		tab[j] = malloc(sizeof(char) * (carcts(&src[o]) + 1));
+		if (!tab[j])
 			return (leak(tab, j));
 		while ((src[o] != '\t' && src[o] != ' ') && src[o])
 		{
@@ -86,7 +87,7 @@ static char		*alloc(char **tab, char *src)
 	return (*tab);
 }
 
-char			**ft_space_split(char const *s)
+char	**ft_space_split(char const *s)
 {
 	int			j;
 	char		**tab;

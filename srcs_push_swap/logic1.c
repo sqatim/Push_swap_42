@@ -6,7 +6,7 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 14:52:25 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/14 22:18:52 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/15 22:46:53 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	logic1(t_stack **a, t_stack *b, int arg)
 {
 	if ((*a)->number > (*a)->next->number && (*a)->next->number <\
 		(*a)->next->next->number && (*a)->number < (*a)->next->next->number)
-		swap(&(*a), b,"sa", arg);
+		swap(&(*a), b, "sa", arg);
 	else if ((*a)->number < (*a)->next->number && (*a)->next->number \
 		> (*a)->next->next->number && (*a)->number < (*a)->next->next->number)
 	{

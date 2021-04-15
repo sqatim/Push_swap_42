@@ -6,7 +6,7 @@
 /*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/14 23:30:55 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/15 23:43:51 by ragegodthor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_tools
     int arg;
     int max;
     int min;
+    int number;
 } t_tools;
 
 /*================================  operation  ================================*/
@@ -95,7 +96,8 @@ t_pivot *select_pivot(t_pivot *pivot, int number);
 void check_for_duplicates(t_stack *a, t_stack *stack);
 t_stack *check_affec(int ac, char **av, t_stack *a, t_stack **stack);
 // t_stack *check_affec(int ac, char **av, t_stack *a);
-int check_tri(t_stack *a, t_stack *b);
+int check_sort(t_stack *a, t_stack *b);
+int	check_if_int(char *str);
 
 /*================================  read  ================================*/
 
@@ -124,6 +126,9 @@ int maximum(t_stack *stack);
 char **ft_space_split(char const *s);
 long long ft_atol(const char *str);
 int check_arg(char *str);
+int check_sort(t_stack *a, t_stack *b);
+int	check_operation(t_stack *stack, int number);
+int	select_denominator(int len);
 
 /*================================  free  ================================*/
 
@@ -136,5 +141,6 @@ void free_pivot(t_pivot **pivot);
 /*================================  print  ================================*/
 
 void print(t_stack *a, t_stack *b);
+void	step_tree(t_stack **a, t_stack **b, t_pivot *pivot, int arg);
 
 #endif
