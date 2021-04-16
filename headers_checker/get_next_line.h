@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 19:08:39 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/13 00:12:11 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/16 13:45:46 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # define FD_SIZE  4864
 # define BUFFER_SIZE  10
-
 
 int		get_next_line(int fd, char **line);
 int		ft_remplissage(char **tmp, int fd, char **line);

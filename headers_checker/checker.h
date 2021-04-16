@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 23:52:29 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/15 23:52:30 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/16 13:45:36 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # include "../libft/libft.h"
 # include "get_next_line.h"
 
-typedef enum	e_argument
+typedef enum e_argument
 {
 	DEBUGGER,
 }				t_argument;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				number;
 	struct s_stack	*next;

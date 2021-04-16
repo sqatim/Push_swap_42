@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:58:00 by sqatim            #+#    #+#             */
-/*   Updated: 2019/11/08 22:40:49 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:58:46 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int words(char *str, char c)
+static int	words(char *str, char c)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -34,7 +34,7 @@ static int words(char *str, char c)
 	return (j);
 }
 
-static void *leak(char **spl, int j)
+static void	*leak(char **spl, int j)
 {
 	j = j - 1;
 	while (spl[j])
@@ -46,9 +46,9 @@ static void *leak(char **spl, int j)
 	return (NULL);
 }
 
-static int carcts(char *str, char c)
+static int	carcts(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && str[i] != c)
@@ -58,11 +58,11 @@ static int carcts(char *str, char c)
 	return (i);
 }
 
-static char *alloc(char **tab, char *src, char c)
+static char	*alloc(char **tab, char *src, char c)
 {
-	int i;
-	int j;
-	int o;
+	int	i;
+	int	j;
+	int	o;
 
 	j = 0;
 	o = 0;
@@ -71,7 +71,8 @@ static char *alloc(char **tab, char *src, char c)
 	while (j < words(src, c))
 	{
 		i = 0;
-		if (!(tab[j] = malloc(sizeof(char) * (carcts(&src[o], c) + 1))))
+		tab[j] = malloc(sizeof(char) * (carcts(&src[o], c) + 1));
+		if (!tab[j])
 			return (leak(tab, j));
 		while (src[o] != c && src[o])
 			tab[j][i++] = src[o++];
@@ -84,11 +85,11 @@ static char *alloc(char **tab, char *src, char c)
 	return (*tab);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	int j;
-	char **tab;
-	char *str;
+	int		j;
+	char	**tab;
+	char	*str;
 
 	j = 0;
 	if (!s)

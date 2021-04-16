@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 11:09:38 by sqatim            #+#    #+#             */
-/*   Updated: 2019/11/08 22:40:26 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/16 14:01:23 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		countnbr(int n)
+int	countnbr(int n)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	if (n == 0)
@@ -35,7 +35,8 @@ char	*ft_itoapos(int n)
 	if (n >= 0)
 	{
 		a = countnbr(n);
-		if (!(p = malloc(sizeof(char) * (a + 1))))
+		p = malloc(sizeof(char) * (a + 1));
+		if (!p)
 			return (NULL);
 		p[a] = '\0';
 		a--;
@@ -60,7 +61,8 @@ char	*ft_itoa(int n)
 	if (n < 0)
 	{
 		a = countnbr(n);
-		if (!(p = malloc(sizeof(char) * (a + 2))))
+		p = malloc(sizeof(char) * (a + 2));
+		if (!p)
 			return (NULL);
 		p[a + 1] = '\0';
 		p[0] = '-';

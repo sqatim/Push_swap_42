@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:45:41 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/15 23:42:16 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/16 13:42:22 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static t_pivot	*step_zero(t_stack *a, int len)
 static void	step_one(t_stack **a, t_stack **b, t_pivot *pivot, int arg)
 {
 	t_tmp	tmp;
-	t_tools tool;
+	t_tools	tool;
 	int		index;
 
 	index = 0;

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 11:53:21 by sqatim            #+#    #+#             */
-/*   Updated: 2019/11/03 22:25:49 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:59:24 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	const char *source;
-	char *copy;
+	const char	*source;
+	char		*copy;
 
 	source = (char *)src;
 	copy = (char *)dst;

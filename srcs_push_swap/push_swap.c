@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/15 22:14:18 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/16 13:41:18 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	calcul_for_reverse(t_stack *a)
 
 void	which_logic(t_stack **a, t_stack **b, t_stack *stack, int arg)
 {
-	int len;
+	int	len;
 
 	len = count_len_stack(*a);
 	if (len == 2)

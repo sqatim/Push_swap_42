@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic4_ext.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 23:38:17 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/15 23:44:46 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/16 13:42:05 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	select_denominator(int len)
 
 static void	step_tree_extended(t_tmp *tmp, t_tools *tool)
 {
-	t_stack *tmp_b;
+	t_stack	*tmp_b;
 
 	while (tmp->a->number != tool->min)
 	{

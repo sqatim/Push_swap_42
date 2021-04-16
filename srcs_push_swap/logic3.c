@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logic3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 12:22:46 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/15 22:49:41 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/16 13:42:50 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	push_or_operation(t_stack **a, t_stack **b, t_tools *tool, int arg)
 void	step_one(t_stack **a, t_stack **b, int arg)
 {
 	t_stack	*tmp_a;
-	t_tools tool;
+	t_tools	tool;
 	int		calcul;
 
 	tool.if_true = 1;

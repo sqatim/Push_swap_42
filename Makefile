@@ -95,7 +95,7 @@ $(NAME) : $(LIB_PATH)/$(LIB) $(OBJ_CHECKER) $(OBJ_PUSH_SWAP)
 	@echo "'---'.|     '--'----'      '--'---' '--''                             \   \ |   |  ,     .-./'---'.|   " 
 	@echo "  '---'                                                                '---\"     '--'---'      '---'   " 
 	@echo "                                                                                                       " 
-	@echo "									 Compilation of $(NAME):  \033[1;32mOK\033[m"
+	@echo "								Compilation of $(NAME) && checker:  \033[1;32mOK\033[m"
 
 lib:
 	@make -sC $(LIB_PATH)

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 03:28:24 by sqatim            #+#    #+#             */
-/*   Updated: 2019/11/05 17:20:53 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:53:43 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void *ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char *ptr;
+	char	*ptr;
 
 	ptr = malloc(count * size);
 	if (ptr == NULL)
