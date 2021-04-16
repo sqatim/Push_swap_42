@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/15 15:00:11 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/16 15:05:20 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ int	check_arg(char *str)
 	return (-1);
 }
 
+void	check_error_arg(char **av, int *index, int *arg)
+{
+	*arg = check_arg(av[1]);
+	if (*arg != -1 && !av[2])
+	{
+		ft_putendl_fd("You need to put elements in the stack", 1);
+		exit(1);
+	}
+	if (*arg != -1)
+		(*index)++;
+}
+
 char	**parse_elements(char **av, int *arg)
 {
 	char	*str;
@@ -52,10 +64,8 @@ char	**parse_elements(char **av, int *arg)
 	int		index;
 
 	index = 1;
+	check_error_arg(av, &index, arg);
 	str = ft_strdup("\0");
-	*arg = check_arg(av[1]);
-	if (*arg != -1)
-		index++;
 	while (av[index])
 	{
 		tmp = str;

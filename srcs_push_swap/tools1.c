@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:36:06 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/15 23:40:08 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/16 15:04:54 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,18 @@ int	check_operation(t_stack *stack, int number)
 	tool.diff = tool.count - tool.med;
 	check = which_operation(tool.diff);
 	return (check);
+}
+
+void	check_error_arg(char **av, int *index)
+{
+	int	arg;
+
+	arg = check_arg(av[1]);
+	if (arg != -1 && !av[2])
+	{
+		ft_putendl_fd("You need to put elements in the stack", 1);
+		exit(1);
+	}
+	if (arg != -1)
+		(*index)++;
 }

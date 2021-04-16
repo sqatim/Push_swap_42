@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:27:45 by sqatim            #+#    #+#             */
-/*   Updated: 2021/04/16 13:52:02 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/16 15:00:39 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void		chose_operation(t_stack **stack1, t_stack *stack2, \
 void		chose_operation_a(t_tmp *tmp, int numb, int if_true);
 void		chose_operation_b(t_tmp *tmp, int numb, int if_true);
 void		read_instructions(t_stack **a, t_stack **b);
+void		check_error_arg(char **av, int *index);
 char		**ft_space_split(char const *s);
 int			check_sort(t_stack *a, t_stack *b);
 int			check_if_int(char *str);

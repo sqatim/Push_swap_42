@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:36:43 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/15 15:32:04 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/16 14:11:59 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	read_instructions(t_stack **a, t_stack **b, int arg)
 
 	while (get_next_line(0, &buffer))
 	{
-		puts(buffer);
 		if (arg == DEBUGGER)
 			system("clear");
 		if (!(ft_strncmp(buffer, "sa\0", 3)))

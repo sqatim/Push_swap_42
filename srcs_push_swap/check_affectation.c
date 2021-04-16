@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_affectation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ragegodthor <ragegodthor@student.42.fr>    +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/15 22:43:14 by ragegodthor      ###   ########.fr       */
+/*   Updated: 2021/04/16 15:00:07 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,10 @@ char	**parse_elements(char **av)
 	char	*tmp;
 	char	**tab;
 	int		index;
-	int		arg;
 
 	index = 1;
+	check_error_arg(av, &index);
 	str = ft_strdup("\0");
-	arg = check_arg(av[1]);
-	if (arg != -1)
-		index++;
 	while (av[index])
 	{
 		tmp = str;

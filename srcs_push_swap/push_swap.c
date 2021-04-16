@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 13:10:51 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/16 13:41:18 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/16 15:31:29 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,17 @@ int	main(int ac, char **av)
 	t_stack	*b;
 	int		arg;
 
-	stack = NULL;
-	a = NULL;
-	b = NULL;
-	a = check_affec(ac, av, a, &stack);
-	arg = check_arg(av[1]);
-	if (!(check_sort(a, b)))
-		which_logic(&a, &b, stack, arg);
-	free_stack(&stack);
-	free_stack(&a);
+	if (ac > 1)
+	{
+		stack = NULL;
+		a = NULL;
+		b = NULL;
+		a = check_affec(ac, av, a, &stack);
+		arg = check_arg(av[1]);
+		if (!(check_sort(a, b)))
+			which_logic(&a, &b, stack, arg);
+		free_stack(&stack);
+		free_stack(&a);
+	}
 	return (0);
 }
