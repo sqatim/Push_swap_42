@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 11:25:46 by ragegodthor       #+#    #+#             */
-/*   Updated: 2021/04/16 15:05:20 by sqatim           ###   ########.fr       */
+/*   Updated: 2021/04/19 13:57:46 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ int	check_for_errors(char **tab)
 	int	index;
 
 	index = 0;
+	if (!tab[0])
+	{
+		free_tab(&tab);
+		ft_putendl_fd("Error", 2);
+		return (0);
+	}
 	while (tab[index])
 	{
 		if (!(check_if_int(tab[index])))
